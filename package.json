@@ -1,0 +1,30 @@
+{
+  "name": "critic.ly",
+  "version": "1.0.0",
+  "description": "Collaboration between Jean Paul Dualan and June Yoshii. A movie review site.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juney3/critic.ly.git"
+  },
+  "keywords": [
+    "movie",
+    "review",
+    "social"
+  ],
+  "author": "Jean Paul Dualan and June Yoshii",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juney3/critic.ly/issues"
+  },
+  "homepage": "https://github.com/juney3/critic.ly#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.1.2",
+    "npm": "^6.1.0"
+  }
+}
