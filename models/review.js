@@ -28,9 +28,12 @@ let ReviewSchema = new Schema({
   movie: {
     type: Schema.Types.ObjectId,
     ref: 'Movie'
-  },
-  {timestamps}
-})
+  }
+},
+  {
+    timestamps: true
+  }
+)
 
 const Review = mongoose.model('Review', ReviewSchema);
 

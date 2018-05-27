@@ -30,7 +30,9 @@ let RatingSchema = new Schema({
     ref: 'Movie'
   }
 },
-  {timestamps}
+  {
+    timestamps: true
+  }
 );
 
 const Rating = mongoose.model('Rating', RatingSchema);

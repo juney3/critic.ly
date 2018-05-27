@@ -10,7 +10,7 @@ const Schema = mongoose.Schema;
 Connect to DB
 */
 
-mongoose.connect('mongodb://localhost/critic.ly');
+mongoose.connect('mongodb://localhost/criticly');
 
 
 /*
@@ -20,4 +20,4 @@ module.exports.Review = require('./review.js');
 module.exports.Movie = require('./movie.js');
 module.exports.Rating =
 require('./rating.js');
-module.exports.User = require('/.user.js');
+module.exports.User = require('./user.js');

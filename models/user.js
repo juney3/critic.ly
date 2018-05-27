@@ -38,7 +38,9 @@ let UserSchema = new Schema({
     ref: 'Rating'
   }]
 },
-  {timestamps}
+  {
+    timestamps: true
+  }
 );
 
 const User = mongoose.model('User', UserSchema);

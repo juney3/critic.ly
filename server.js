@@ -6,7 +6,7 @@ Modules and configuration
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-// const db = require('./models');
+const db = require('./models');
 // const controllers = require('./controllers');
 
 // Express configuration

@@ -4,7 +4,7 @@ Requirements
 
 // Require Mongoose
 
-const Mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Require other models
