@@ -7,5 +7,6 @@ module.exports = {
   reviews: require('./reviewsController'),
   movies: require('./moviesController'),
   ratings: require('./ratingsController'),
-  users:('./usersController')
+  users:
+  require('./usersController')
 }
