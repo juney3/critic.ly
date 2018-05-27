@@ -4,7 +4,7 @@ Export from the controllers
 
 module.exports = {
   api: require('./apiController'),
-  comments: require('./commentsController'),
+  reviews: require('./reviewsController'),
   movies: require('./moviesController'),
   ratings: require('./ratingsController'),
   users:('./usersController')

@@ -9,9 +9,8 @@ const Schema = mongoose.Schema;
 
 // Require other models
 
-const Review = require('./review.js');
+const User = require('./user.js');
 const Movie = require('./movie.js');
-const Rating = require('./rating.js');
 
 
 /*
@@ -20,32 +19,24 @@ Schema definition
 
 // Include timestamps option to track created at and updated at data
 
-let UserSchema = new Schema({
-  firstName: String,
-  lastName: String,
-  email: String,
-  password: String,
-  reviews: [{
+let ReviewSchema = new Schema({
+  text: String,
+  user: {
     type: Schema.Types.ObjectId,
-    ref: 'Review'
-  }],
-  movies: [{
+    ref: 'User'
+  },
+  movie: {
     type: Schema.Types.ObjectId,
     ref: 'Movie'
-  }],
-  ratings: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Rating'
-  }]
-},
+  },
   {timestamps}
-);
+})
 
-const User = mongoose.model('User', UserSchema);
+const Review = mongoose.model('Review', ReviewSchema);
 
 
 /*
 Export the schema
 */
 
-module.exports = User;
+module.exports = Review;
