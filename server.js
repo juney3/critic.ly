@@ -7,7 +7,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const db = require('./models');
-// const controllers = require('./controllers');
+const controllers = require('./controllers');
 
 // Express configuration
 app.use(express.static('public'));
@@ -21,7 +21,7 @@ Server routes
 */
 
 app.get('/', (req, res) => {
-  res.send('Hello! This is the first hello world sanity check!')
+  res.send('Hello world! This is critic.ly speaking')
 });
 
 //More routes to come!

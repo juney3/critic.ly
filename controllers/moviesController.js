@@ -37,7 +37,7 @@ function create (req, res) {
     console.log(`new movie created: ${movieCreated.title}`);
     res.json(movieCreated);
   })
-};
+}
 
 // GET one movie: /api/movie/movieId
 // Send back one movie as JSON
@@ -61,6 +61,6 @@ Export the functions
 
 module.exports = {
   index: index,
-  create: create;
-  show: show;
+  create: create,
+  show: show,
 }
