@@ -1,3 +1,11 @@
+body {
+  background-image: url("../images/filmstrip.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
 /* Add a black background color to the top navigation bar */
 .topnav {
     overflow: hidden;
@@ -7,12 +15,17 @@
 /* Style the links inside the navigation bar */
 .topnav a {
     float: left;
+    font-family: verdana;
     display: block;
     color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 16px;
+}
+
+.topnav input {
+  font-family: verdana;
 }
 
 /* Change the color of links on hover */
@@ -81,8 +94,7 @@
 
 #recentReviews {
   height: auto;
-  border: 4px darkgrey dotted;
-  width: 80%;
+  width: 76%;
   margin: 0 auto;
 }
 
@@ -91,11 +103,14 @@
   flex-direction: row;
   justify-content: space-around;
   padding: 20px 0 20px;
+  background: rgba(0,0,0,0.1)
 }
 
 .movieImg {
   height: auto;
   width: 25%;
+  text-align: center;
+  margin: 2em 1em;
 }
 
 .commentBox {
@@ -104,11 +119,15 @@
   width: 60%;
   align-items: center;
   padding: 1em 1em;
+  margin: 1.4em 1em;
 }
 
 .movieName {
   font-weight: bold;
   text-align: center;
+  font-size: 1.33em;
+  color: white;
+  background-color: black;
 }
 
 
@@ -145,10 +164,11 @@
 }
 
 #rateStatus{
-  width:150px;
+  width:200px;
   height:50px;
-  font:bold 20px arial;
-  color:red;
+  font:bold 20px Garamond;
+  text-align: center;
+  color:black;
   float:left;
   clear:both;
   margin-top:10px;
@@ -159,15 +179,36 @@
 }
 
 .saved{
-color:red;
+color:black;
 }
 
 #register {
   width: 50%;
   margin: 0 auto;
 }
+
 form {
   width: 100%;
+}
+
+.movieImg p {
+  font-family: Garamond;
+}
+
+.commentBox p {
+  font-family: Garamond;
+}
+
+.comments {
+  border: 1px solid white;
+}
+
+.userName {
+  font-size: 1.5em;
+  color: white;
+  background-color: black;
+  width: 100%;
+  text-align: center;
 }
 
 .flexBoundary {
