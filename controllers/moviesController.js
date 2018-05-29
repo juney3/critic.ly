@@ -12,12 +12,13 @@ API routes
 // GET index: /api/movie
 // Send back all movies
 function index (req, res) {
-  db.Movie.find({}, (err, movies) => {
-    if (err) {
-      console.log(`error: ${err}`);
-    }
-    res.json(movies);
-  });
+  db.Movie.find({})
+    .populate('reviews')
+    .exec(function(err, results) {
+      if (err) {console.log(`error: ${err}`)}
+
+      res.json(results);
+    })
 };
 
 // POST: /api/movie

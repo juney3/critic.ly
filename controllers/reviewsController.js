@@ -29,12 +29,18 @@ function create(req, res) {
     if (err) {
       console.log(err);
     }
-    db.Movie.findOneById(movieId, function(err, movieFound){
+    db.Movie.findOneAndUpdate(
+      {_id: movieId},
+      {$push:
+        {reviews: reviewCreated
+        }
+      },
+      function(err, movieUpdated){
       if(err) {console.log(`movie update error: ${err}`)}
 
-      console.log(`movie found: ${movieFound}`);
+      console.log(`movie updated: ${movieUpdated}`);
     })
-    res.send('reviewCreated');
+    res.json(reviewCreated);
   })
 }
 

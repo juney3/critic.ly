@@ -43,7 +43,36 @@ $(document).ready(function() {
 // find and show movies
 function showMovies(movies) {
   movies.forEach(function(movie){
-    console.log(movie);
+    /*
+    Reviews
+    */
+    console.log(movie.reviews);
+    let allReviews = movie.reviews;
+    let review = [];
+    let rating = [];
+    let avgRating = 0;
+
+    if (allReviews) {
+      allReviews.forEach(function(thisReview){
+        review.push(thisReview.reviewText);
+        rating.push(thisReview.rating);
+      })
+    }
+    console.log(`rating: ${rating}`);
+
+    if (rating.length != 0) {
+      avgRating = (rating.reduce((total, singleRating) => total + singleRating)) / rating.length
+    }
+
+    if (rating === undefined || rating.length === 0) {
+      rating = "No ratings currently";
+    }
+
+    if (review === undefined || review.length === 0) {
+      review = "No reviews currently";
+    }
+
+    let allRatings = allReviews.ratings
     let movieId = movie._id
     let movieTemplate =
     `<div>
@@ -53,7 +82,9 @@ function showMovies(movies) {
       <p>Year: ${movie.year}</p>
       <p>Genre: ${movie.genre}</p>
       <p>Id#: ${movieId}</p>
-      <p>Review: ${movie.reviews}</p>
+      <p>Reviews: ${review}</p>
+      <p>Individual ratings: ${rating}</p>
+      <p>Average rating: ${avgRating}</p>
       <form action="/api/movies/${movieId}/reviews" method="POST" class="reviewForm">
         <textArea name="reviewText" class="reviewText" placeholder="Enter your review here"></textArea>
         <input type="number" name="rating" class="rating" placeholder="Rating" min="1" max="5"/>
