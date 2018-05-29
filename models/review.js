@@ -20,7 +20,8 @@ Schema definition
 // Include timestamps option to track created at and updated at data
 
 let ReviewSchema = new Schema({
-  text: String,
+  reviewText: String,
+  rating: Number,
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'

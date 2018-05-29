@@ -15,9 +15,7 @@ function index (req, res) {
   db.Movie.find({}, (err, movies) => {
     if (err) {
       console.log(`error: ${err}`);
-      sendStatus(500);
     }
-    console.log('getting movie list');
     res.json(movies);
   });
 };
@@ -26,13 +24,13 @@ function index (req, res) {
 // Create a movie
 function create (req, res) {
   let newMovie = req.body;
-  let genreArray = newMovies.genre.split(',');
+  let genreArray = newMovie.genre.split(',');
   newMovie.genres = genreArray;
+  console.log('you want to create a movie');
 
   db.Movie.create(newMovie, function (err, movieCreated) {
     if (err) {
       console.log(`error: ${err}`);
-      sendStatus(500);
     }
     console.log(`new movie created: ${movieCreated.title}`);
     res.json(movieCreated);
@@ -47,7 +45,6 @@ function show (req, res) {
   db.findOneById(movieId, function (err, movieFound) {
     if (err) {
       console.log(`error: ${err}`);
-      sendStatus(500);
     }
     console.log(`movie found: ${movieFound.title}`);
     res.json(movieFound);

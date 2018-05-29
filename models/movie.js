@@ -10,7 +10,6 @@ const Schema = mongoose.Schema;
 // Require other models
 
 const Review = require('./review.js');
-const Rating = require('./movie.js');
 
 
 /*
@@ -22,10 +21,6 @@ let MovieSchema = new Schema({
   director: String,
   year: Number,
   genre: [String],
-  ratings: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Rating'
-  }],
   reviews: [{
     type: Schema.Types.ObjectId,
     ref: 'Review'

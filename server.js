@@ -23,13 +23,20 @@ Server routes
 app.get('/', function (req, res) {
     res.sendFile('views/testUserForm.html' , { root : __dirname});
 })
-//More routes to come!
 
 app.get('/api', controllers.api.index);
 
 app.get('/api/users', controllers.users.index);
 
 app.post('/api/users', controllers.users.create);
+
+app.get('/api/movies', controllers.movies.index);
+
+app.post('/api/movies', controllers.movies.create);
+
+app.get('/api/reviews', controllers.reviews.index);
+
+app.post('/api/movies/:id/reviews', controllers.reviews.create);
 
 /*
 port*/

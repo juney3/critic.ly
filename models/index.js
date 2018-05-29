@@ -18,6 +18,4 @@ Export models so they can be used by other modules
 */
 module.exports.Review = require('./review.js');
 module.exports.Movie = require('./movie.js');
-module.exports.Rating =
-require('./rating.js');
 module.exports.User = require('./user.js');

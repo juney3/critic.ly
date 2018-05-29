@@ -11,7 +11,6 @@ const Schema = mongoose.Schema;
 
 const Review = require('./review.js');
 const Movie = require('./movie.js');
-const Rating = require('./rating.js');
 
 
 /*
