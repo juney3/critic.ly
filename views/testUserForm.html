@@ -3,19 +3,21 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="scripts/testapp.js"></script>
+
     <title>Test User Form</title>
   </head>
   <body>
     <div class="form">
       <form id="registerForm">
-        <input type="text" placeholder="First name" id="firstName" />
-        <input type="text" placeholder="Last name" id="lastName" />
-        <input type="text" placeholder="Email address" id="email" />
-        <input type="text" placeholder="Password" id="password" />
-        <input type="text" id="confirmPassword" placeholder="Confirm password"/>
-        <input type="submit"  id="submitRegister" action="/api/user" method="POST" />
-        <input type="hidden" id="newUserSubmit" />
+        <input type="text" name="firstName" placeholder="First name" id="firstName" />
+        <input type="text" placeholder="Last name" name="lastName" id="lastName" />
+        <input type="text" placeholder="Email address" name="email" id="email" />
+        <input type="text" placeholder="Password" name="password" id="password" />
+        <input type="text" name="confirmPassword" id="confirmPassword" placeholder="Confirm password"/>
+        <input type="submit"  id="submitRegister" action="/api/users" method="POST" />
+        <input type="hidden" name="newUserSubmit" id="newUserSubmit" />
       </form>
     </div>
     <div class="results">

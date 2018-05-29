@@ -3,10 +3,10 @@ Export from the controllers
 */
 
 module.exports = {
-  api: require('./apiController'),
-  reviews: require('./reviewsController'),
-  movies: require('./moviesController'),
-  ratings: require('./ratingsController'),
+  api: require('./apiController.js'),
+  reviews: require('./reviewsController.js'),
+  movies: require('./moviesController.js'),
+  ratings: require('./ratingsController.js'),
   users:
-  require('./usersController')
+  require('./usersController.js')
 }

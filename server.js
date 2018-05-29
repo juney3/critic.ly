@@ -20,12 +20,16 @@ app.use(bodyParser.urlencoded({
 Server routes
 */
 
-app.get('/', (req, res) => {
-  res.send('Hello world! This is critic.ly speaking')
-});
-
+app.get('/', function (req, res) {
+    res.sendFile('views/testUserForm.html' , { root : __dirname});
+})
 //More routes to come!
 
+app.get('/api', controllers.api.index);
+
+app.get('/api/users', controllers.users.index);
+
+app.post('/api/users', controllers.users.create);
 
 /*
 port*/
