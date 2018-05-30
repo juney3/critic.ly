@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Critic.ly</title>
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link rel="stylesheet" href="../public/styles/styles.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript"
+     src="../public/scripts/app.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="topnav">
+          <a href="#home">HOME</a>
+          <a class="active" href="#myReviews">MY REVIEWS</a>
+          <a href="register.html">REGISTER</a>
+          <a href="login.html">LOGIN</a>
+          <input type="text" placeholder="Movie Name">
+        </div>
+      </nav>
+
+    </header>
+
+    <section id="banner">
+
+
+    <section id="createNewReview">
+      <h4>Movie entry form</h4>
+        <div class="form">
+          <form id="movieForm" action="/api/movies" method="POST">
+            <input type="text" name="title" id="title" placeholder="Movie Title" />
+            <input type="text" name="director" id="director" placeholder="Director" />
+            <input type="text" name="year" id="year" placeholder="year" />
+            <input type="text" name="genre" id="genre" placeholder="genre" />
+            <input type="submit" name="movieSubmit" id="movieSubmit" />
+          </form>
+        </div>
+      </section>
+
+    <section id="myRecentReviews">
+      <article>
+        <section class="userMovieReview">
+          <div class="movieImg">
+            <img src="https://ia.media-imdb.com/images/M/MV5BY2JiYTNmZTctYTQ1OC00YjU4LWEwMjYtZjkwY2Y5MDI0OTU3XkEyXkFqcGdeQXVyNTI4MzE4MDU@._V1_UX182_CR0,0,182,268_AL_.jpg"/>
+            <p class="movieName">Ready Player One</p></div>
+
+          <div class="commentBox">
+            <p class="userName">Reviewed by: Cris</p>
+            <p class="comments"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+          </br>
+          <div id="rateMe" title="Rate Me!">
+          <a onclick="rateIt(this)" id="_1" title="Waste of time!" onmouseover="rating(this)" onmouseout="off(this)"></a>
+          <a onclick="rateIt(this)" id="_2" title="Not very good!" onmouseover="rating(this)" onmouseout="off(this)"></a>
+          <a onclick="rateIt(this)" id="_3" title="It was just OK!" onmouseover="rating(this)" onmouseout="off(this)"></a>
+          <a onclick="rateIt(this)" id="_4" title="Really Good!" onmouseover="rating(this)" onmouseout="off(this)"></a>
+          <a onclick="rateIt(this)" id="_5" title="Life Changing!" onmouseover="rating(this)" onmouseout="off(this)"></a>
+        </div>
+         <span id="rateStatus"></span>
+          <span id="ratingSaved"></span>
+<!--
+          <div id="userRating">
+            <p>  * * * * * </p>
+          <div id="rating">
+            <span>?</span>
+            <span>?</span>
+            <span>?</span>
+            <span>?</span>
+            <span>?</span>
+          </div> </div> -->
+        </section>
+      </article>
+    </section>
+
+    <footer>
+
+    </footer>
+
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Critic.ly</title>
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link rel="stylesheet" href="../public/styles/styles.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript"
+     src="../public/scripts/app.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  </head>
+  <body>
+    <header>
+      <!-- <nav>
+        <div class="topnav">
+          <a class="active" href="#home">HOME</a>
+          <a href="#myReviews">MY REVIEWS</a>
+          <a href="register.html">REGISTER</a>
+          <a href="login.html">LOGIN</a>
+          <input type="text" placeholder="Movie Name">
+        </div>
+      </nav> -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    </header>
+
+    <section id="banner">
+
+    </section>
+    <section id="recentReviews">
+      <article>
+        <section class="userMovieReview">
+          <div class="movieImg">
+            <img src="https://ia.media-imdb.com/images/M/MV5BY2JiYTNmZTctYTQ1OC00YjU4LWEwMjYtZjkwY2Y5MDI0OTU3XkEyXkFqcGdeQXVyNTI4MzE4MDU@._V1_UX182_CR0,0,182,268_AL_.jpg"/>
+            <p class="movieName">Ready Player One</p></div>
+
+          <div class="commentBox">
+            <p class="userName">Reviewed by: Cris</p>
+            <p class="comments"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+          </br>
+          <div id="rateMe" title="Rate Me!">
+          <a onclick="rateIt(this)" id="_1" title="Waste of time!" onmouseover="rating(this)" onmouseout="off(this)"></a>
+          <a onclick="rateIt(this)" id="_2" title="Not very good!" onmouseover="rating(this)" onmouseout="off(this)"></a>
+          <a onclick="rateIt(this)" id="_3" title="It was just OK!" onmouseover="rating(this)" onmouseout="off(this)"></a>
+          <a onclick="rateIt(this)" id="_4" title="Really Good!" onmouseover="rating(this)" onmouseout="off(this)"></a>
+          <a onclick="rateIt(this)" id="_5" title="Life Changing!" onmouseover="rating(this)" onmouseout="off(this)"></a>
+        </div>
+         <span id="rateStatus"></span>
+          <span id="ratingSaved"></span>
+<!--
+          <div id="userRating">
+            <p>  * * * * * </p>
+          <div id="rating">
+            <span>?</span>
+            <span>?</span>
+            <span>?</span>
+            <span>?</span>
+            <span>?</span>
+          </div> </div> -->
+          </div>
+        </section>
+      </article>
+
+      <article>
+        <section class="userMovieReview">
+          <div class="movieImg">
+            <img src="https://ia.media-imdb.com/images/M/MV5BMTg2MzI1MTg3OF5BMl5BanBnXkFtZTgwNTU3NDA2MTI@._V1_UX182_CR0,0,182,268_AL_.jpg"/>
+            <p class="movieName">Gaurdians of the Galaxy 2</p></div>
+
+          <div class="commentBox">
+            <p class="userName">Reviewed by: Yadir</p>
+            <p class="comments"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+          </br>
+          <div id="rateMe" title="Rate Me!">
+          <a onclick="rateIt(this)" id="_1" title="Waste of time!" onmouseover="rating(this)" onmouseout="off(this)"></a>
+          <a onclick="rateIt(this)" id="_2" title="Not very good!" onmouseover="rating(this)" onmouseout="off(this)"></a>
+          <a onclick="rateIt(this)" id="_3" title="It was just OK!" onmouseover="rating(this)" onmouseout="off(this)"></a>
+          <a onclick="rateIt(this)" id="_4" title="Really Good!" onmouseover="rating(this)" onmouseout="off(this)"></a>
+          <a onclick="rateIt(this)" id="_5" title="Life Changing!" onmouseover="rating(this)" onmouseout="off(this)"></a>
+        </div>
+         <span id="rateStatus"></span>
+          <span id="ratingSaved"></span>
+<!--
+          <div id="userRating">
+            <p>  * * * * * </p>
+          <div id="rating">
+            <span>?</span>
+            <span>?</span>
+            <span>?</span>
+            <span>?</span>
+            <span>?</span>
+          </div> </div> -->
+        </div>
+        </section>
+      </article>
+
+
+
+
+    </section>
+
+  </body>
+</html>
