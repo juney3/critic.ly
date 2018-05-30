@@ -46,13 +46,13 @@ function showMovies(movies) {
     Reviews
     */
     let allReviews = movie.reviews;
-    let reviewTextArr = [];
+    let reviewArr = [];
     let ratingArr =[];
     let avgRating = 0;
 
     if (allReviews != undefined || allReviews.length != 0) {
       allReviews.forEach(function(thisReview){
-        reviewTextArr.push({
+        reviewArr.push({
           'reviewId': thisReview._id,
           'content': thisReview.reviewText,
           'date': thisReview.createdAt
@@ -61,20 +61,26 @@ function showMovies(movies) {
       })
     }
 
-    console.log('this is review: ' + reviewTextArr)
-    let eachReview = reviewTextArr.map(function(singleReview) {
+    let eachReview = reviewArr.map(function(singleReview) {
       console.log(singleReview);
-      return(
-        `<div>
-        <h5>User Review</h5>
-        <p>Review: ${singleReview.content}<p>
-        <p>Date: ${singleReview.date}</p>
-        
-        <input type="submit" name="reviewEdit" value="Edit">
-        <input type="submit" name="reviewDelete" value="Delete">
-        <br>
-        </div>`
-    );
+      let reviewTemplate =
+      `<div>
+      <h5>User Review</h5>
+      <p>Review: ${singleReview.content}<p>
+      <p>Date: ${singleReview.date}</p>
+      <form action="/api/reviews/${singleReview.reviewId}/edit" method="PUT">
+        <input type="submit" name="reviewEdit" class="reviewEdit" value="Edit">
+      </form>
+      <form action="/api/reviews/${singleReview.reviewId}/delete">
+        <input type="submit" name="reviewDelete" class="reviewDelete" value="Delete">
+      </form>
+      <br>
+      </div>`
+      return (reviewTemplate);
+    })
+
+    let displayReview = eachReview.forEach(oneReview => {
+      $('.review').append(oneReview);
     })
 
     if (ratingArr.length != 0) {
@@ -85,8 +91,8 @@ function showMovies(movies) {
       ratingArr = "No ratings currently";
     }
 
-    if (reviewTextArr === undefined || reviewTextArr.length === 0) {
-      reviewTextArr = "No reviews currently";
+    if (reviewArr === undefined || reviewArr.length === 0) {
+      reviewArr = "No reviews currently";
     }
 
     let movieId = movie._id
@@ -98,7 +104,7 @@ function showMovies(movies) {
       <p>Year: ${movie.year}</p>
       <p>Genre: ${movie.genre}</p>
       <p>Id#: ${movieId}</p>
-      <p>Reviews: ${eachReview}</p>
+      <p class="review">Reviews: ${displayReview}</p>
       <p>Individual ratings: ${ratingArr}</p>
       <p>Average rating: ${avgRating}</p>
       <form action="/api/movies/${movieId}/reviews" method="POST" class="reviewForm">
