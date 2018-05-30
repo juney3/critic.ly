@@ -36,6 +36,8 @@ app.post('/api/movies', controllers.movies.create);
 
 app.get('/api/reviews', controllers.reviews.index);
 
+app.get('/api/reviews/recent', controllers.reviews.recent);
+
 app.post('/api/movies/:id/reviews', controllers.reviews.create);
 
 /*

@@ -27,14 +27,6 @@ let UserSchema = new Schema({
   reviews: [{
     type: Schema.Types.ObjectId,
     ref: 'Review'
-  }],
-  movies: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Movie'
-  }],
-  ratings: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Rating'
   }]
 },
   {

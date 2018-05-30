@@ -7,7 +7,6 @@ $(document).ready(function() {
 // find and display users
   function showUsers(users) {
     users.forEach(function(user){
-      console.log(user);
       let userTemplate =
       `<div>
         <h4>User information</h4>
@@ -46,33 +45,50 @@ function showMovies(movies) {
     /*
     Reviews
     */
-    console.log(movie.reviews);
     let allReviews = movie.reviews;
-    let review = [];
-    let rating = [];
+    let reviewTextArr = [];
+    let ratingArr =[];
     let avgRating = 0;
 
-    if (allReviews) {
+    if (allReviews != undefined || allReviews.length != 0) {
       allReviews.forEach(function(thisReview){
-        review.push(thisReview.reviewText);
-        rating.push(thisReview.rating);
+        reviewTextArr.push({
+          'reviewId': thisReview._id,
+          'content': thisReview.reviewText,
+          'date': thisReview.createdAt
+        });
+        ratingArr.push(thisReview.rating);
       })
     }
-    console.log(`rating: ${rating}`);
 
-    if (rating.length != 0) {
-      avgRating = (rating.reduce((total, singleRating) => total + singleRating)) / rating.length
+    console.log('this is review: ' + reviewTextArr)
+    let eachReview = reviewTextArr.map(function(singleReview) {
+      console.log(singleReview);
+      return(
+        `<div>
+        <h5>User Review</h5>
+        <p>Review: ${singleReview.content}<p>
+        <p>Date: ${singleReview.date}</p>
+        
+        <input type="submit" name="reviewEdit" value="Edit">
+        <input type="submit" name="reviewDelete" value="Delete">
+        <br>
+        </div>`
+    );
+    })
+
+    if (ratingArr.length != 0) {
+      avgRating = ((ratingArr.reduce((total, singleRating) => total + singleRating)) / ratingArr.length).toFixed(2);
     }
 
-    if (rating === undefined || rating.length === 0) {
-      rating = "No ratings currently";
+    if (ratingArr === undefined || ratingArr.length === 0) {
+      ratingArr = "No ratings currently";
     }
 
-    if (review === undefined || review.length === 0) {
-      review = "No reviews currently";
+    if (reviewTextArr === undefined || reviewTextArr.length === 0) {
+      reviewTextArr = "No reviews currently";
     }
 
-    let allRatings = allReviews.ratings
     let movieId = movie._id
     let movieTemplate =
     `<div>
@@ -82,8 +98,8 @@ function showMovies(movies) {
       <p>Year: ${movie.year}</p>
       <p>Genre: ${movie.genre}</p>
       <p>Id#: ${movieId}</p>
-      <p>Reviews: ${review}</p>
-      <p>Individual ratings: ${rating}</p>
+      <p>Reviews: ${eachReview}</p>
+      <p>Individual ratings: ${ratingArr}</p>
       <p>Average rating: ${avgRating}</p>
       <form action="/api/movies/${movieId}/reviews" method="POST" class="reviewForm">
         <textArea name="reviewText" class="reviewText" placeholder="Enter your review here"></textArea>
@@ -106,7 +122,12 @@ function handleMovie(movie) {
       <p>Year: ${movie.year}</p>
       <p>Genre: ${movie.genre}</p>
       <p>Id#: ${movie._id}</p>
-      <p>Reviews: ${movie.reviews}</p>
+      <form action="/api/movies/${movie._id}/reviews" method="POST" class="reviewForm">
+        <textArea name="reviewText" class="reviewText" placeholder="Enter your review here"></textArea>
+        <input type="number" name="rating" class="rating" placeholder="Rating" min="1" max="5"/>
+        <input type="hidden" name="movie" value="${movie._id}"/>
+        <input type="submit" name="reviewSubmit" class="reviewSubmit" />
+      </form>
       </div>`;
 
     $('.movieResults').prepend(movieTemplate);
@@ -124,14 +145,18 @@ function handleMovie(movie) {
 
 //find reviewsfunction showMovies() {
 
-function showReviews(reviews){
+function showRecentReviews(reviews){
+  console.log(reviews);
   reviews.forEach(function(review){
     let reviewTemplate =
-    `<p>Review: ${review.reviewText}</p>
-     <p>Rating: ${review.rating}</p>
-     <p>Movie ID: ${review.movie}</p>`;
+    `<h5>Recent User Reviews</h5>
+    <p>Movie: ${review.movie.title}</p>
+    <p>Review: ${review.reviewText}</p>
+    <p>Rating: ${review.rating}</p>
+    <p>Date: ${review.createdAt}</p>
+    <br>`;
 
-    $('.reviewResults').prepend(reviewTemplate);
+    $('.reviewResults').append(reviewTemplate);
   })
 }
 
@@ -142,6 +167,15 @@ function findReviews() {
     success: showReviews,
     error: handleError
   });
+}
+
+function findRecentReviews() {
+  $.ajax({
+    method: 'GET',
+    url: '/api/reviews/recent',
+    success: showRecentReviews,
+    error: handleError
+  })
 }
 
 
@@ -200,5 +234,5 @@ function findReviews() {
 
   findUsers();
   findMovies();
-  findReviews();
+  findRecentReviews();
 })

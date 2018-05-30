@@ -10,9 +10,24 @@ Routes
 */
 
 // GET: /api/reviews
+// get all reviews
 function index(req, res) {
   db.Review.find({}, function(err, reviews){
     if (err) {console.log(err)}
+    console.log(reviews);
+    res.json(reviews);
+  })
+}
+
+function recent(req, res) {
+  db.Review.find({})
+  .sort({
+      'createdAt' : -1
+    })
+  .limit(5)
+  .populate('movie')
+  .exec(function(err, reviews){
+    if (err) {console.log(err)};
     console.log(reviews);
     res.json(reviews);
   })
@@ -40,11 +55,12 @@ function create(req, res) {
 
       console.log(`movie updated: ${movieUpdated}`);
     })
-    res.json(reviewCreated);
+    res.redirect('/');
   })
 }
 
 module.exports = {
   index: index,
-  create: create
+  create: create,
+  recent: recent
 }
