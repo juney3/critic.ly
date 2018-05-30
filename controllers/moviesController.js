@@ -34,7 +34,7 @@ function create (req, res) {
       console.log(`error: ${err}`);
     }
     console.log(`new movie created: ${movieCreated.title}`);
-    res.json(movieCreated);
+    res.redirect('/myReviews');
   })
 }
 

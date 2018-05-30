@@ -14,7 +14,6 @@ Routes
 function index(req, res) {
   db.Review.find({}, function(err, reviews){
     if (err) {console.log(err)}
-    console.log(reviews);
     res.json(reviews);
   })
 }
@@ -28,15 +27,12 @@ function recent(req, res) {
   .populate('movie')
   .exec(function(err, reviews){
     if (err) {console.log(err)};
-    console.log(reviews);
     res.json(reviews);
   })
 }
 
 //POST: /api/movie/id/review
 function create(req, res) {
-  console.log(req.body);
-  console.log(req.params.id);
   let newReview = req.body;
   let movieId = req.params.id;
 
