@@ -20,20 +20,36 @@ app.use(bodyParser.urlencoded({
 Server routes
 */
 
+//pages
 app.get('/', function (req, res) {
+    res.sendFile('views/index.html' , { root : __dirname});
+})
+
+app.get('/reviews', function (req, res) {
     res.sendFile('views/testUserForm.html' , { root : __dirname});
 })
 
+app.get('/myReviews', function (req, res) {
+    res.sendFile('views/myReviews.html' , { root : __dirname});
+})
+
+// index route
 app.get('/api', controllers.api.index);
 
+
+// user routes
 app.get('/api/users', controllers.users.index);
 
 app.post('/api/users', controllers.users.create);
 
+
+//movie routes
 app.get('/api/movies', controllers.movies.index);
 
 app.post('/api/movies', controllers.movies.create);
 
+
+//review routes
 app.get('/api/reviews', controllers.reviews.index);
 
 app.get('/api/reviews/recent', controllers.reviews.recent);

@@ -45,43 +45,59 @@ function showMovies(movies) {
     /*
     Reviews
     */
+
+    let movieId = movie._id
+
+
     let allReviews = movie.reviews;
     let reviewArr = [];
     let ratingArr =[];
     let avgRating = 0;
 
-    if (allReviews != undefined || allReviews.length != 0) {
+    // if (allReviews != undefined || allReviews.length != 0) {
       allReviews.forEach(function(thisReview){
         reviewArr.push({
           'reviewId': thisReview._id,
           'content': thisReview.reviewText,
-          'date': thisReview.createdAt
+          'rating': thisReview.rating,
+          'date': thisReview.createdAt,
+          'movie': thisReview.movie
         });
         ratingArr.push(thisReview.rating);
       })
-    }
+    // }
 
     let eachReview = reviewArr.map(function(singleReview) {
-      console.log(singleReview);
       let reviewTemplate =
       `<div>
       <h5>User Review</h5>
-      <p>Review: ${singleReview.content}<p>
+      <p>Movie: ${singleReview.movie}</p>
+      <p>Review: ${singleReview.content}</p>
       <p>Date: ${singleReview.date}</p>
-      <form action="/api/reviews/${singleReview.reviewId}/edit" method="PUT">
-        <input type="submit" name="reviewEdit" class="reviewEdit" value="Edit">
-      </form>
+      <div class="editForm">
+        <button class="btn btn-primary" data-toggle="collapse" data-target=".collapseEditForm" data-parent="editForm" role="button" aria-expanded="false" aria-controls="collapseEditForm">
+          Click to edit review
+        </button>
+        <div class="collapseEditForm">
+        <form class="collapseEditForm" action="/api/reviews/${singleReview.reviewId}/edit" method="PUT">
+          <input type="text" name="textEdit" class="textEdit" placeholder="${singleReview.content}"/>
+          <input type="number" min="1" max="5" name="ratingEdit" class="ratingEdit" placeholder=${singleReview.rating}/>
+          <input type="submit" name="reviewEdit" class="reviewEdit" value="Edit"/>
+        </form>
+        </div>
+      </div>
       <form action="/api/reviews/${singleReview.reviewId}/delete">
-        <input type="submit" name="reviewDelete" class="reviewDelete" value="Delete">
+        <input type="submit" name="reviewDelete" class="reviewDelete" value="Delete"/>
       </form>
       <br>
       </div>`
       return (reviewTemplate);
     })
 
-    let displayReview = eachReview.forEach(oneReview => {
-      $('.review').append(oneReview);
-    })
+    // let displayReview = eachReview.forEach(oneReview => {
+    //   console.log(`oneReview: ${oneReview}`);
+    //   $('.review').append(oneReview);
+    // })
 
     if (ratingArr.length != 0) {
       avgRating = ((ratingArr.reduce((total, singleRating) => total + singleRating)) / ratingArr.length).toFixed(2);
@@ -95,7 +111,6 @@ function showMovies(movies) {
       reviewArr = "No reviews currently";
     }
 
-    let movieId = movie._id
     let movieTemplate =
     `<div>
       <h4>Movie information</h4>
@@ -104,7 +119,7 @@ function showMovies(movies) {
       <p>Year: ${movie.year}</p>
       <p>Genre: ${movie.genre}</p>
       <p>Id#: ${movieId}</p>
-      <p class="review">Reviews: ${displayReview}</p>
+      <p class="review">Reviews: ${eachReview}</p>
       <p>Individual ratings: ${ratingArr}</p>
       <p>Average rating: ${avgRating}</p>
       <form action="/api/movies/${movieId}/reviews" method="POST" class="reviewForm">
@@ -116,6 +131,7 @@ function showMovies(movies) {
       </div>`;
 
     $('.movieResults').prepend(movieTemplate);
+
   })
 }
 
@@ -238,7 +254,7 @@ function findRecentReviews() {
     this.reset();
   })
 
-  findUsers();
+  // findUsers();
   findMovies();
   findRecentReviews();
 })
