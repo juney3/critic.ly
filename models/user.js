@@ -11,7 +11,6 @@ const Schema = mongoose.Schema;
 
 const Review = require('./review.js');
 const Movie = require('./movie.js');
-const Rating = require('./rating.js');
 
 
 /*
@@ -28,14 +27,6 @@ let UserSchema = new Schema({
   reviews: [{
     type: Schema.Types.ObjectId,
     ref: 'Review'
-  }],
-  movies: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Movie'
-  }],
-  ratings: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Rating'
   }]
 },
   {

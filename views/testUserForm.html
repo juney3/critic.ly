@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="scripts/testapp.js" defer></script>
+
+    <title>Test Forms</title>
+  </head>
+  <body>
+    <section>
+      <h4>User signup form</h4>
+      <div class="form">
+        <form id="registerForm" action="/api/users" method="POST">
+          <input type="text" name="firstName" placeholder="First name" id="firstName" />
+          <input type="text" placeholder="Last name" name="lastName" id="lastName" />
+          <input type="email" placeholder="Email address" name="email" id="email" />
+          <input type="password" placeholder="Password" name="password" id="password" />
+          <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password"/>
+          <input type="submit"  id="submitRegister" />
+          <input type="hidden" name="newUserSubmit" id="newUserSubmit" />
+        </form>
+      </div>
+      <h4>User List</h4>
+      <div class="userResults">
+      </div>
+    </section>
+    <section>
+      <h4>Movie entry form</h4>
+      <div class="form">
+        <form id="movieForm" action="/api/movies" method="POST">
+          <input type="text" name="title" id="title" placeholder="Movie Title" />
+          <input type="text" name="director" id="director" placeholder="Director" />
+          <input type="text" name="year" id="year" placeholder="year" />
+          <input type="text" name="genre" id="genre" placeholder="genre" />
+          <input type="submit" name="movieSubmit" id="movieSubmit" />
+        </form>
+      </div>
+      <div class="movieResults">
+
+      </div>
+      <h4>Reviews</h4>
+      <div class="reviewResults">
+
+      </div>
+    </section>
+  </body>
+</html>
