@@ -185,6 +185,15 @@ body {
   display:none;
 }
 
+#newMovieForm {
+  width: 79%;
+  margin: 0 auto;
+  margin-top: 3em;
+  padding: 1em 1em;
+  border-radius: 15px;
+  background-color: lightgrey;
+}
+
 .saved{
 color:black;
 }
