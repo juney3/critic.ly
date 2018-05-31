@@ -58,7 +58,7 @@ function showMovies(movies) {
           'reviewId': thisReview._id,
           'content': thisReview.reviewText,
           'rating': thisReview.rating,
-          'date': thisReview.createdAt,
+          'date': (thisReview.createdAt),
           'movie': thisReview.movie
         });
         ratingArr.push(thisReview.rating);
