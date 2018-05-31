@@ -1,7 +1,7 @@
 body {
   background-image: url("../images/filmstripbgblack.png");
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   background-size: cover;
 
 
@@ -53,20 +53,7 @@ body {
     font-size: 17px;
 }
 
-/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
-@media screen and (max-width: 600px) {
-    .topnav a, .topnav input[type=text] {
-        float: none;
-        display: block;
-        text-align: left;
-        width: 100%;
-        margin: 0;
-        padding: 14px;
-    }
-    .topnav input[type=text] {
-        border: 1px solid #ccc;
-    }
-}
+
 /*
 #rating {
   text-align: center;
@@ -249,4 +236,95 @@ textarea {
 input[type="submit"]{
  background-color: #6FAB82;
  color: white;
+}
+
+/* Reviews Content Main section styles */
+.reviewsContent {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 0 0 2em;
+}
+/* Movie section styles */
+.movieSection {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid darkgray;
+  background-color: white;
+  border-radius: 30px;
+  margin: 3em;
+  padding: 2em;
+}
+
+.movieContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.movieData {
+  width: 50%;
+}
+
+.userMovieInfo {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.userMovieInfo .form-control {
+  margin: 1em;
+}
+
+.criticlyReviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* myReview styles */
+.reviewSection {
+  display: flex;
+  flex-direction: column;
+  border: solid 1px darkgray;
+  border-radius: 20px;
+  padding: 2em;
+  background-color: lightgray;
+  width: 80%;
+  margin: 1em;
+}
+
+.reviewContent {
+  display: flex;
+  flex-direction: row;
+}
+
+.reviewData {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin-left: 20px;
+}
+
+.reviewChanges {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+    .topnav a, .topnav input[type=text] {
+        float: none;
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+    .topnav input[type=text] {
+        border: 1px solid #ccc;
+    }
 }
