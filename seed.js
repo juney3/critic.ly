@@ -71,25 +71,29 @@ var reviewList = [{
   movie: 'I Kill Giants',
   review: 'There are giants that get killed in this movie',
   date: 2018-05-29,
-  rating: 5
+  rating: 5,
+  movie_id: '33497223482jf';
 }, {
   reviewId: '2024u189518828'
   movie: 'Blade Runner 2049',
   review: 'Exciting, on the edge of my seat the entire time',
   date: 2018-05-30,
-  rating: 5
+  rating: 5,
+  movie_id: '33497223482js'
 }, {
   reviewId: '6024u189518828'
   movie: 'I Kill Giants',
   review: 'There are giants that get killed in this movie',
   date: 2018-05-29,
-  rating: 5
+  rating: 5,
+  movie_id: '334972234ssjf'
 }, {
   reviewId: '6024u189518828'
   movie: 'I Kill Giants',
   review: 'There are giants that get killed in this movie',
   date: 2018-05-29,
-  rating: 5
+  rating: 5,
+  movie_id: '33497223786sjf'
 }];
 
 
@@ -98,13 +102,13 @@ movieList.forEach(function(movie) {
 });
 
 
-db.Album.remove({}, function(err, albums){
+db.Movie.remove({}, function(err, movies){
   // code in here runs after all albums are removed
-  db.Album.create(albumsList, function(err, albums){
+  db.Movie.create(movieList, function(err, movies){
     // code in here runs after all albums are created
     if (err) { return console.log('ERROR', err); }
-    console.log("all albums:", albums);
-    console.log("created", albums.length, "albums");
+    console.log("all movies:", movies);
+    console.log("created", movies.length, "movies");
     process.exit();
   });
 });
