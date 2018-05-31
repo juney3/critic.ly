@@ -89,7 +89,7 @@ body {
 
 }
 
-.userMovieReview {
+/* .userMovieReview {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -98,6 +98,17 @@ body {
   border: 3em solid black;
   padding: 20px 0 20px;
   background: lightgrey;
+} */
+
+.newReview {
+  border-radius: 75px;
+  background-color: light-grey;
+  border: 3em solid black;
+  padding: 20px 0 20px;
+  background: lightgrey;
+  height: auto;
+  width: 79%;
+  margin: 0 auto;
 }
 
 .movieImg {
@@ -179,6 +190,20 @@ body {
   padding: 1em 1em;
   border-radius: 15px;
   background-color: lightgrey;
+}
+
+h4 {
+  color: white;
+}
+
+#createNewReview {
+  width: 80%;
+  margin: 0 auto;
+  background-color: black;
+}
+
+#createNewReview form{
+  width: 100%;
 }
 
 .saved{
@@ -287,6 +312,44 @@ input[type="submit"]{
   margin: 1em;
 }
 
+/* recentReviewsStyles */
+h5 {
+  text-align: center;
+  font-size: 3.6em;
+  color: white;
+  margin-top: 1.167em;
+  font-family: courier;
+  text-transform: uppercase;
+}
+
+.recentReviewsMovieName {
+  font-size: 2em;
+  font-weight: bold;
+  font-family: courier;
+  text-align: center;
+}
+
+.recentReviewsReview {
+  border: 1px white dotted;
+  padding: 1em;
+  width: 90%;
+  font-size: 1.4em;
+  font-family: courier;
+  margin-left: 1.2em;
+}
+
+.recentReviewsRating {
+  font-size: 1.5em;
+  font-family: courier;
+  margin-left: 1em;
+}
+
+.recentReviewsDate {
+  font-size: 1.5em;
+  font-family: courier;
+  margin-left: 1em;
+}
+
 .criticlyReviews {
   display: flex;
   flex-direction: column;
@@ -316,8 +379,6 @@ input[type="submit"]{
   padding: 20px 0 20px;
   background: lightgrey;
 }
-
-
 
 .reviewContent {
   display: flex;

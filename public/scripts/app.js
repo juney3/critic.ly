@@ -2,15 +2,24 @@ function showRecentReviews(reviews){
   console.log(reviews);
   reviews.forEach(function(review){
     let reviewTemplate =
-    `<p class="recentReviewsMovieName">Movie: ${review.movie.title}</p>
+    `<div class="newReview"><p class="recentReviewsMovieName"> ${review.movie.title}</p>
     <p class="recentReviewsReview">Review: ${review.reviewText}</p>
-    <p class="recentReviewsRating">Rating: ${review.rating}</p>
+    <p class="recentReviewsRating">Reviewer Rating: ${review.rating}</p>
     <p class="recentReviewsDate">Date: ${review.createdAt.slice(0,10)}</p>
-    <br>`;
+    </div>`;
 
-    $('.mostRecentReviews').append(reviewTemplate);
+    $('.recentReviews').append(reviewTemplate);
   })
+  function convertRatingToStar(reviews) {
+    reviews.forEach(function(review) {
+      let numberRating = parseInt(review.rating);
+        if (numberRating === 5) {
+
+        }
+    })
+  }
 }
+
 
 function handleError(err) {
 	console.log(`O noes! The following error occurred: ${err}`);
