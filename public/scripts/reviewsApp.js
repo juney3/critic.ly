@@ -6,8 +6,6 @@ $(document).ready(function() {
 
 
   // find and show movies
-
-
   function showMovies(movies) {
     movies.forEach(function(movie){
       let movieId = movie._id
@@ -16,6 +14,7 @@ $(document).ready(function() {
       let ratingArr =[];
       let avgRating = 0;
 
+      // Get review data from movie record
       if (allReviews != undefined || allReviews.length != 0) {
         allReviews.forEach(function(thisReview){
           reviewArr.push({
@@ -27,8 +26,8 @@ $(document).ready(function() {
           });
           ratingArr.push(thisReview.rating);
         })
-      // }
 
+      // Render each review
       let eachReview = reviewArr.map(function(singleReview) {
         let reviewTemplate =
         `<div class="reviewSection">
@@ -36,40 +35,57 @@ $(document).ready(function() {
           <div class="reviewContent row">
             <div class="reviewData col-8">
               <p>Review: ${singleReview.content}</p>
-              <p>Date: ${singleReview.date}</p>
+              <p>Date: ${singleReview.date.slice(0, 10)}</p>
             </div>
 
-            <div class="reviewChanges col-4">
-              <div class="editForm">
-                <button class="btn btn-primary" data-toggle="collapse" data-target=".collapseEditForm" data-parent="editForm" role="button" aria-expanded="false" aria-controls="collapseEditForm">
-                  Click to edit review
-                </button>
-                <div class="collapseEditForm">
-                  <form class="collapseEditForm" action="/api/reviews/${singleReview.reviewId}/edit" method="PUT">
-                    <input type="text" name="textEdit" class="textEdit" placeholder="${singleReview.content}"/>
-                    <input type="number" min="1" max="5" name="ratingEdit" class="ratingEdit" placeholder=${singleReview.rating}/>
-                    <input type="submit" name="reviewEdit" class="reviewEdit" value="Edit"/>
-                  </form>
+          <div class="reviewChanges col-4">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
+              Click to edit review
+            </button>
+
+            <!-- Modal -->
+              <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Edit review</h5>
+                      <button type="button" class="close"     data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form class="editReviewForm" action="/api/reviews/${singleReview.reviewId}/edit" method="PUT}">
+                        <div class="form-group">
+                          <textArea name="reviewText" class=" form-control reviewText" placeholder="${singleReview.content}"></textArea>
+                          <input type="number" name="rating" class="form-control rating" placeholder="
+                          ${singleReview.rating}" min="1" max="5"/>
+                          <input type="hidden" name="movie" value="${singleReview.movie}"/>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary reviewUpdateSave">Save changes</button>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <form action="/api/reviews/${singleReview.reviewId}/delete">
-                <input type="submit" name="reviewDelete" class="reviewDelete" value="Delete"/>
+              <form action="/api/reviews/${singleReview.reviewId}/delete" method="DELETE">
+                <button type="button" name="reviewDelete" class="btn btn-danger reviewDelete">Delete review</button>
               </form>
             </div>
           </div>
         </div>`
         return (reviewTemplate);
-      })
+      }).join('')
 
-      // let displayReview = eachReview.forEach(oneReview => {
-      //   console.log(`oneReview: ${oneReview}`);
-      //   $('.review').append(oneReview);
-      // })
-
+      // Calculate average user rating
       if (ratingArr.length != 0) {
         avgRating = ((ratingArr.reduce((total, singleRating) => total + singleRating)) / ratingArr.length).toFixed(2);
       }
 
+      // Handle no rating and no review cases
       if (ratingArr === undefined || ratingArr.length === 0) {
         ratingArr = "No ratings currently";
       }
@@ -78,8 +94,9 @@ $(document).ready(function() {
         eachReview = "No reviews currently";
       }
 
+      // Render movie information
       let movieTemplate =
-      `<div class="movieSection">
+      `<div class="movieSection" data-id="${movieId}">
         <h4>Movie information</h4>
         <div class="movieContent row">
           <div class="movieData">
@@ -90,14 +107,14 @@ $(document).ready(function() {
           </div>
           <div class="userMovieInfo">
           <p>Average user rating: ${avgRating}</p>
-          <form action="/api/movies/${movieId}/reviews" method="POST" class="reviewForm">
-            <div class="form-group">
-              <textArea name="reviewText" class=" form-control reviewText" placeholder="Enter your review here"></textArea>
-              <input type="number" name="rating" class="form-control rating" placeholder="Select a rating from 1-5" min="1" max="5"/>
-              <input type="hidden" name="movie" value="${movieId}"/>
-              <input type="submit" name="reviewSubmit" class="btn btn-primary reviewSubmit" />
-            </div>
-          </form>
+          <div class="form-group">
+            <form action="/api/movies/${movieId}/reviews" method="POST" class="reviewForm">
+                <textArea name="reviewText" class=" form-control reviewText" placeholder="Enter your review here"></textArea>
+                <input type="number" name="rating" class="form-control rating" placeholder="Select a rating from 1-5" min="1" max="5"/>
+                <input type="hidden" name="movie" value="${movieId}"/>
+                <input type="submit" name="reviewSubmit" class="btn btn-primary reviewSubmit" />
+            </form>
+          </div>
           </div>
         </div>
 
@@ -112,6 +129,7 @@ $(document).ready(function() {
     })
   }
 
+    // Ajax call to find all movies
     function findMovies() {
       $.ajax({
         method: 'GET',
@@ -120,24 +138,6 @@ $(document).ready(function() {
         error: handleError
       });
     }
-
-
-  //find reviewsfunction showMovies() {
-
-  function showRecentReviews(reviews){
-    console.log(reviews);
-    reviews.forEach(function(review){
-      let reviewTemplate =
-      `<h5>Recent User Reviews</h5>
-      <p>Movie: ${review.movie.title}</p>
-      <p>Review: ${review.reviewText}</p>
-      <p>Rating: ${review.rating}</p>
-      <p>Date: ${review.createdAt}</p>
-      <br>`;
-
-      $('.reviewResults').append(reviewTemplate);
-    })
-  }
 
   function findReviews() {
     $.ajax({
@@ -148,16 +148,6 @@ $(document).ready(function() {
     });
   }
 
-  function findRecentReviews() {
-    $.ajax({
-      method: 'GET',
-      url: '/api/reviews/recent',
-      success: showRecentReviews,
-      error: handleError
-    })
-  }
-
-
   // error handler
       function handleError(err) {
         console.log(`O noes! The following error occurred: ${err}`);
@@ -165,22 +155,6 @@ $(document).ready(function() {
 
 
   // submit functions
-    $('#registerForm').on('submit', function(event){
-      event.preventDefault();
-      console.log(this.firstName);
-      $.ajax({
-        method: 'POST',
-        url: '/api/users',
-        data: $(this).serialize(),
-        success: function(user){
-          console.log(user);
-          handleCreate(user);
-        },
-        error: handleError
-      });
-      this.reset();
-    })
-
     $('#movieForm').on('submit', function(event){
       event.preventDefault();
       console.log(this.title);
@@ -197,19 +171,25 @@ $(document).ready(function() {
       this.reset();
     })
 
-    $('movieResults').on('submit', function(event){
+    // Review form submission
+    // Add an event listener for all children
+    $('.reviewForm').on('submit', '.movieResults', function(event){
       event.preventDefault();
-      console.log('you submitted a review');
+
+      let movieId = $(movieSection).data('id');
+
       $.ajax({
         method: 'POST',
-        url: '/api/movies/:id/reviews',
-        data: $(this).serialize(),
-        success: console.log('review!'),
+        url: `/api/movies/${movieId}/reviews`,
+        data: $('.reviewForm').serialize(),
+        success: review => {
+          console.log(`review created: ${review}`);
+        },
         error: handleError
       });
-      this.reset();
     })
 
+    // Update form event
+
     findMovies();
-    findRecentReviews();
 })

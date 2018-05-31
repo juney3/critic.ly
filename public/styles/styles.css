@@ -293,6 +293,7 @@ input[type="submit"]{
   padding: 2em;
   background-color: lightgray;
   width: 80%;
+  margin: 1em;
 }
 
 .reviewContent {
