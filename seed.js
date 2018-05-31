@@ -66,40 +66,46 @@ var movieList = [{
 // have recent reviews show up
 // show last recent reviews
 
-var reviewList = [{
-  reviewId: '6024u189518828'
-  movie: 'I Kill Giants',
-  review: 'There are giants that get killed in this movie',
-  date: 2018-05-29,
-  rating: 5,
-  movie_id: '33497223482jf';
-}, {
-  reviewId: '2024u189518828'
-  movie: 'Blade Runner 2049',
-  review: 'Exciting, on the edge of my seat the entire time',
-  date: 2018-05-30,
-  rating: 5,
-  movie_id: '33497223482js'
-}, {
-  reviewId: '6024u189518828'
-  movie: 'I Kill Giants',
-  review: 'There are giants that get killed in this movie',
-  date: 2018-05-29,
-  rating: 5,
-  movie_id: '334972234ssjf'
-}, {
-  reviewId: '6024u189518828'
-  movie: 'I Kill Giants',
-  review: 'There are giants that get killed in this movie',
-  date: 2018-05-29,
-  rating: 5,
-  movie_id: '33497223786sjf'
-}];
+// var reviewList = [{
+//   movie: 'I Kill Giants',
+//   reviews: {
+//     reviewText:
+//     rating:
+//     user: {
+//       type
+//     },
+//
+//   },
+//   date: 2018-05-29,
+//   rating: 5,
+//   movie_id: '33497223482jf';
+// }, {
+//   reviewId: '2024u189518828'
+//   movie: 'Blade Runner 2049',
+//   review: 'Exciting, on the edge of my seat the entire time',
+//   date: 2018-05-30,
+//   rating: 5,
+//   movie_id: '33497223482js'
+// }, {
+//   reviewId: '6024u189518828'
+//   movie: 'I Kill Giants',
+//   review: 'There are giants that get killed in this movie',
+//   date: 2018-05-29,
+//   rating: 5,
+//   movie_id: '334972234ssjf'
+// }, {
+//   reviewId: '6024u189518828'
+//   movie: 'I Kill Giants',
+//   review: 'There are giants that get killed in this movie',
+//   date: 2018-05-29,
+//   rating: 5,
+//   movie_id: '33497223786sjf'
+// }];
 
 
-movieList.forEach(function(movie) {
-  movie.reviews = reviewList;
-});
+// movieList.forEach(function(movie) {
+//   movie.reviews = reviewList;
+// });
 
 
 db.Movie.remove({}, function(err, movies){

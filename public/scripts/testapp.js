@@ -60,7 +60,7 @@ function showMovies(movies) {
           'reviewId': thisReview._id,
           'content': thisReview.reviewText,
           'rating': thisReview.rating,
-          'date': (thisReview.createdAt).slice(0, 10),
+          'date': (thisReview.createdAt),
           'movie': thisReview.movie
         });
         ratingArr.push(thisReview.rating);
@@ -73,7 +73,7 @@ function showMovies(movies) {
       <h5>User Review</h5>
       <p>Movie: ${singleReview.movie}</p>
       <p>Review: ${singleReview.content}</p>
-      <p>Date: ${(singleReview.date).slice(0,10)}</p>
+      <p>Date: ${singleReview.date}</p>
       <div class="editForm">
         <button class="btn btn-primary" data-toggle="collapse" data-target=".collapseEditForm" data-parent="editForm" role="button" aria-expanded="false" aria-controls="collapseEditForm">
           Click to edit review

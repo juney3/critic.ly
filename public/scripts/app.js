@@ -1,3 +1,33 @@
+function showRecentReviews(reviews){
+  console.log(reviews);
+  reviews.forEach(function(review){
+    let reviewTemplate =
+    `<h5>Recent User Reviews</h5>
+    <p>Movie: ${review.movie.title}</p>
+    <p>Review: ${review.reviewText}</p>
+    <p>Rating: ${review.rating}</p>
+    <p>Date: ${review.createdAt}</p>
+    <br>`;
+
+    $('.mostRecentReviews').append(reviewTemplate);
+  })
+}
+
+function handleError(err) {
+	console.log(`O noes! The following error occurred: ${err}`);
+}
+
+function findRecentReviews() {
+  $.ajax({
+    method: 'GET',
+    url: '/api/reviews/recent',
+    success: showRecentReviews,
+    error: handleError
+  })
+}
+
+
+findRecentReviews();
 //
 // /**
 //  * Star rating class
