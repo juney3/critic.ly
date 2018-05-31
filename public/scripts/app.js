@@ -2,11 +2,10 @@ function showRecentReviews(reviews){
   console.log(reviews);
   reviews.forEach(function(review){
     let reviewTemplate =
-    `<h5>Recent User Reviews</h5>
-    <p>Movie: ${review.movie.title}</p>
-    <p>Review: ${review.reviewText}</p>
-    <p>Rating: ${review.rating}</p>
-    <p>Date: ${review.createdAt}</p>
+    `<p class="recentReviewsMovieName">Movie: ${review.movie.title}</p>
+    <p class="recentReviewsReview">Review: ${review.reviewText}</p>
+    <p class="recentReviewsRating">Rating: ${review.rating}</p>
+    <p class="recentReviewsDate">Date: ${review.createdAt.slice(0,10)}</p>
     <br>`;
 
     $('.mostRecentReviews').append(reviewTemplate);

@@ -305,6 +305,20 @@ input[type="submit"]{
   margin: 1em;
 }
 
+
+.mostRecentReviews {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius: 75px;
+
+  border: 3em solid black;
+  padding: 20px 0 20px;
+  background: lightgrey;
+}
+
+
+
 .reviewContent {
   display: flex;
   flex-direction: row;
