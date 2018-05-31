@@ -47,8 +47,6 @@ function showMovies(movies) {
     */
 
     let movieId = movie._id
-
-
     let allReviews = movie.reviews;
     let reviewArr = [];
     let ratingArr =[];

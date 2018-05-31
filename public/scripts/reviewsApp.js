@@ -45,7 +45,7 @@ $(document).ready(function() {
             </button>
 
             <!-- Modal -->
-              <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+              <div class="modal fade reviewEditModel" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -57,8 +57,8 @@ $(document).ready(function() {
                     <div class="modal-body">
                       <form class="editReviewForm" action="/api/reviews/${singleReview.reviewId}/edit" method="PUT}">
                         <div class="form-group">
-                          <textArea name="reviewText" class=" form-control reviewText" placeholder="${singleReview.content}"></textArea>
-                          <input type="number" name="rating" class="form-control rating" placeholder="
+                          <textArea name="reviewText" class=" form-control reviewText" value="${singleReview.content}"></textArea>
+                          <input type="number" name="rating" class="form-control rating" value="
                           ${singleReview.rating}" min="1" max="5"/>
                           <input type="hidden" name="movie" value="${singleReview.movie}"/>
                         </div>
@@ -66,7 +66,7 @@ $(document).ready(function() {
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary reviewUpdateSave">Save changes</button>
+                      <input type="submit" class="btn btn-primary reviewUpdateSave">Save changes</button>
                     </div>
                   </div>
                 </div>
@@ -129,7 +129,7 @@ $(document).ready(function() {
     })
   }
 
-    // Ajax call to find all movies
+    // Ajax call to find all movies and call the showMovies function
     function findMovies() {
       $.ajax({
         method: 'GET',
@@ -139,22 +139,16 @@ $(document).ready(function() {
       });
     }
 
-  function findReviews() {
-    $.ajax({
-      method: 'GET',
-      url: '/api/reviews',
-      success: showReviews,
-      error: handleError
-    });
-  }
-
   // error handler
       function handleError(err) {
         console.log(`O noes! The following error occurred: ${err}`);
       }
 
+/*
+Submit functions
+*/
 
-  // submit functions
+  // Movie creation form submission
     $('#movieForm').on('submit', function(event){
       event.preventDefault();
       console.log(this.title);
@@ -172,7 +166,7 @@ $(document).ready(function() {
     })
 
     // Review form submission
-    // Add an event listener for all children
+    // Add an event listener for all children of reviewForm
     $('.reviewForm').on('submit', '.movieResults', function(event){
       event.preventDefault();
 
@@ -189,7 +183,9 @@ $(document).ready(function() {
       });
     })
 
-    // Update form event
+    // Update form submission
+    // Add an event listener for all children of reviewSection
+    $('.reviewSection').on('submit', )
 
     findMovies();
 })
