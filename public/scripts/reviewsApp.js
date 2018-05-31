@@ -4,6 +4,27 @@ console.log('Sanity check');
 $(document).ready(function() {
   console.log('testapp.js loaded');
 
+  // render new review
+  function renderReview(review) {
+    let reviewTemplate =
+    `<div class="reviewSection">
+      <h5>User Review</h5>
+      <div class="reviewContent row">
+        <div class="reviewData col-8">
+          <p>Review: ${review.reviewText}</p>
+          <p>Date: ${review.createdAt.slice(0, 10)}</p>
+        </div>
+      <div class="reviewChanges col-4">
+      <!-- User changes -->
+        <button type="button" name="reviewUpdate" class="btn btn-primary reviewUpdate">Update review</button>
+        <form action="/api/reviews/${review._id}/delete" method="DELETE">
+              <button type="button" name="reviewDelete" class="btn btn-danger reviewDelete">Delete review</button>
+            </form>
+          </div>
+        </div>
+      </div>`;
+      $('.review').prepend(reviewTemplate);
+  }
 
   // find and show movies
   function showMovies(movies) {
@@ -18,7 +39,7 @@ $(document).ready(function() {
       if (allReviews != undefined || allReviews.length != 0) {
         allReviews.forEach(function(thisReview){
           reviewArr.push({
-            'reviewId': thisReview._id,
+            'id': thisReview._id,
             'content': thisReview.reviewText,
             'rating': thisReview.rating,
             'date': thisReview.createdAt,
@@ -37,48 +58,19 @@ $(document).ready(function() {
               <p>Review: ${singleReview.content}</p>
               <p>Date: ${singleReview.date.slice(0, 10)}</p>
             </div>
-
           <div class="reviewChanges col-4">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
-              Click to edit review
-            </button>
-
-            <!-- Modal -->
-              <div class="modal fade reviewEditModel" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Edit review</h5>
-                      <button type="button" class="close"     data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <form class="editReviewForm" action="/api/reviews/${singleReview.reviewId}/edit" method="PUT}">
-                        <div class="form-group">
-                          <textArea name="reviewText" class=" form-control reviewText" value="${singleReview.content}"></textArea>
-                          <input type="number" name="rating" class="form-control rating" value="
-                          ${singleReview.rating}" min="1" max="5"/>
-                          <input type="hidden" name="movie" value="${singleReview.movie}"/>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <input type="submit" class="btn btn-primary reviewUpdateSave">Save changes</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <form action="/api/reviews/${singleReview.reviewId}/delete" method="DELETE">
-                <button type="button" name="reviewDelete" class="btn btn-danger reviewDelete">Delete review</button>
+          <!-- User changes -->
+            <button type="button" name="reviewUpdate" class="btn btn-primary reviewUpdate">Update review</button>
+            <form action="/api/reviews/${singleReview.idd}/delete" method="DELETE" data-id="${singleReview.id} class="deleteReview">
+                <button type="submit" class="btn btn-danger deleteThisReview">Delete review</button>
               </form>
+              </div>
             </div>
-          </div>
-        </div>`
+          </div>`
         return (reviewTemplate);
       }).join('')
+
+
 
       // Calculate average user rating
       if (ratingArr.length != 0) {
@@ -117,7 +109,6 @@ $(document).ready(function() {
           </div>
           </div>
         </div>
-
         <div class="criticlyReviews">
           <h5>Critic.ly Reviews</h5>
           <p class="review">${eachReview}</p>
@@ -128,6 +119,23 @@ $(document).ready(function() {
       }
     })
   }
+
+  //Delete review
+  $('.deleteReview').on('submit', 'document', function(event){
+    event.preventDefault();
+
+    let reviewId = $('.deleteReview').data('id');
+    console.log(reviewId);
+    let deleteURL = `/api/reviews/${reviewId}`
+    console.log(deleteURL)
+    // $.ajax({
+    //   method: 'DELETE',
+    //   url: deleteURL,
+    //   success: console.log(reviewDeleted),
+    //   error: handleError
+    // });
+  })
+
 
     // Ajax call to find all movies and call the showMovies function
     function findMovies() {
@@ -141,7 +149,7 @@ $(document).ready(function() {
 
   // error handler
       function handleError(err) {
-        console.log(`O noes! The following error occurred: ${err}`);
+        console.log(`The following error occurred: ${err}`);
       }
 
 /*
@@ -176,16 +184,12 @@ Submit functions
         method: 'POST',
         url: `/api/movies/${movieId}/reviews`,
         data: $('.reviewForm').serialize(),
-        success: review => {
-          console.log(`review created: ${review}`);
-        },
+        success: renderReview,
         error: handleError
       });
     })
 
-    // Update form submission
-    // Add an event listener for all children of reviewSection
-    $('.reviewSection').on('submit', )
+
 
     findMovies();
 })

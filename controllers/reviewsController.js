@@ -51,13 +51,42 @@ function create(req, res) {
       function(err, movieUpdated){
       if(err) {console.log(`movie update error: ${err}`)}
       console.log(`movie updated: ${movieUpdated}`);
-      res.json(movieUpdated);
     })
+    res.redirect('/myReviews');
+  })
+}
+
+function update(req, res) {
+  let updatedReview = req.body;
+  let reviewId = req.params.id;
+
+  db.Review.findOneAndUpdate(
+    {_id: reviewId},
+    {$set: {
+      reviewText: updatedReview.reviewText,
+      rating: updatedReview.rating
+      }
+    },
+    function(err, updatedReview){
+      if (err) {console.log(`error: ${err}`)}
+      res.json(updatedReview)
+    })
+  }
+
+function destroy(req, res) {
+  let reviewID = req.params.id;
+  console.log(req.params.id)
+
+  db.Review.findByIdAndRemove(reviewId, function(err, reviewDeleted){
+    if (err) {console.log(`error: ${err}`)}
+    res.json(reviewDeleted);
   })
 }
 
 module.exports = {
+  destroy: destroy,
   index: index,
   create: create,
-  recent: recent
+  recent: recent,
+  update: update,
 }

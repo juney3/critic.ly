@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const db = require('./models');
 const controllers = require('./controllers');
+const mo = require('method-override');
 
 // Express configuration
 app.use(express.static('public'));
@@ -33,7 +34,7 @@ app.get('/myReviews', function (req, res) {
     res.sendFile('views/myReviews.html' , { root : __dirname});
 })
 
-// index route
+// api index route
 app.get('/api', controllers.api.index);
 
 
@@ -50,11 +51,17 @@ app.post('/api/movies', controllers.movies.create);
 
 
 //review routes
+app.get('/api/reviews/:id/delete', controllers.reviews.destroy);
+
 app.get('/api/reviews', controllers.reviews.index);
 
 app.get('/api/reviews/recent', controllers.reviews.recent);
 
 app.post('/api/movies/:id/reviews', controllers.reviews.create);
+
+app.put('/api/reviews/:id/update', controllers.reviews.update);
+
+
 
 /*
 port*/
