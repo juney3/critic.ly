@@ -40,11 +40,14 @@ app.get('/api', controllers.api.index);
 // user routes
 app.get('/api/users', controllers.users.index);
 
+
 app.post('/api/users', controllers.users.create);
 
 
 //movie routes
 app.get('/api/movies', controllers.movies.index);
+
+app.get('/api/movies/recent', controllers.movies.recent);
 
 app.post('/api/movies', controllers.movies.create);
 

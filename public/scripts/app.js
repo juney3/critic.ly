@@ -4,21 +4,14 @@ function showRecentReviews(reviews){
     let reviewTemplate =
     `<div class="newReview"><p class="recentReviewsMovieName"> ${review.movie.title}</p>
     <p class="recentReviewsReview">Review: ${review.reviewText}</p>
-    <p class="recentReviewsRating">Reviewer Rating: ${review.rating}</p>
+    <p class="starRating">${Array.apply(null, new Array(review.rating)).map(function (x) { return `<img src="../images/full-star.png"/>` }).join('')}</p>
+    <p class="recentReviewsRating">Reviewer Star Rating: ${review.rating}</p>
     <p class="recentReviewsDate">Date: ${review.createdAt.slice(0,10)}</p>
     </div>`;
 
     $('.recentReviews').append(reviewTemplate);
-  })
-  function convertRatingToStar(reviews) {
-    reviews.forEach(function(review) {
-      let numberRating = parseInt(review.rating);
-        if (numberRating === 5) {
-
-        }
     })
   }
-}
 
 
 function handleError(err) {
@@ -33,10 +26,34 @@ function findRecentReviews() {
     error: handleError
   })
 }
-
-
-findRecentReviews();
 //
+function addNewlySubmittedMovies(movieList) {
+  movieList.forEach(function(movie) {
+    let newlyAddedMovies = `
+  <div class="newMovie4Review">
+  <p class="newMoviesTitle"> Movie Title: ${movie.title} </p>
+  <p class="newMoviesDirector"> Director: ${movie.director} </p>
+  <p class="newMoviesYear"> Year Released: ${movie.year} </p>
+  <p class="newMoviesGenre"> Genres: ${movie.genre} </p>
+  </div>
+  `;
+
+  $('#newlyAddedMovies').append(newlyAddedMovies);
+  })
+}
+
+function findRecentMovies() {
+  $.ajax({
+    method: 'GET',
+    url: '/api/movies/recent',
+    success: addNewlySubmittedMovies,
+    error: handleError
+  })
+}
+
+findRecentMovies();
+
+findRecentReviews(); //
 // /**
 //  * Star rating class
 //  * @constructor

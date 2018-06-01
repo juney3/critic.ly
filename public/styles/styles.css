@@ -89,6 +89,12 @@ body {
 
 }
 
+#newlyAddedMovies {
+  height: auto;
+  width: 79%;
+  margin: 0 auto;
+}
+
 /* .userMovieReview {
   display: flex;
   flex-direction: row;
@@ -341,13 +347,29 @@ h5 {
 .recentReviewsRating {
   font-size: 1.5em;
   font-family: courier;
-  margin-left: 1em;
+  text-align: center;
 }
+
+.starRating {
+  text-align: center;
+}
+
+
+footer {
+  text-align: center;
+  font-family: courier;
+  font-size: 2.5em;
+  color: black;
+  height: 20vh;
+  background-color: lightgrey;
+}
+
 
 .recentReviewsDate {
   font-size: 1.5em;
   font-family: courier;
-  margin-left: 1em;
+  text-align: right;
+  margin-right: 1em;
 }
 
 .criticlyReviews {
@@ -368,13 +390,21 @@ h5 {
   margin: 1em;
 }
 
-
+.newMovie4Review {
+  border-radius: 75px;
+  background-color: light-grey;
+  border: 3em solid black;
+  padding: 20px 0 20px;
+  background: lightgrey;
+  height: auto;
+  width: 100%;
+  margin: 0 auto;
+}
 .mostRecentReviews {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   border-radius: 75px;
-
   border: 3em solid black;
   padding: 20px 0 20px;
   background: lightgrey;
@@ -396,6 +426,37 @@ h5 {
   display: flex;
   flex-direction: column;
   width: 40%;
+}
+
+/* newlySubmittedMoviesStyles */
+
+.newMoviesTitle {
+  font-size: 2em;
+  font-weight: bold;
+  margin-left: 1em;
+  font-family: courier;
+  text-align: center;
+}
+
+.newMoviesDirector {
+  font-size: 1.5em;
+  margin-left: 1em;
+  font-family: courier;
+  text-align: left;
+}
+
+.newMoviesYear {
+  font-size: 1.5em;
+  margin-left: 1em;
+  font-family: courier;
+  text-align: left;
+}
+
+.newMoviesGenre {
+  font-size: 1.5em;
+  margin-left: 1em;
+  font-family: courier;
+  text-align: left;
 }
 
 /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
