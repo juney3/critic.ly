@@ -5,10 +5,11 @@
 
 
 body {
-  background-image: url("../images/filmstripedit.png");
+  background-image: url("images/filmstripedit.png");
   background-position: center;
   background-repeat: repeat-y;
   background-size: contain;
+  background-color: black;
 
 }
 

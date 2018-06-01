@@ -92,7 +92,7 @@ Render functions
         </div>
       <div class="reviewChanges col-4">
       <!-- User changes -->
-        <button type="button" name="reviewUpdate" class="btn btn-primary reviewUpdate">Update review</button>
+        <button type="button" name="reviewUpdate" id="triggerUpdate" reviewUpdate">Update review</button>
           <form action="/api/reviews/${id}" method="DELETE" class="deleteForm" data-id="${id}">
             <input type="submit" name="reviewDelete" class="btn btn-danger reviewDelete" value="Delete review"/>
           </form>
@@ -248,6 +248,11 @@ Submit functions
       });
     })
 
+    // Update attempt
+    $('.movieReviews').on('click', '#triggerUpdate', function(event){
+      console.log(`event target is ${event.target}`);
+      console.log(`this is ${this}`);
+    })
 
     findMovies();
 })
