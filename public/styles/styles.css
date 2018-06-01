@@ -538,6 +538,25 @@ body {
         border: 1px solid #ccc;
     }
 
+    .newMoviesTitle {
+      font-size: 1.5em;
+      font-weight: bold;
+      width: 90%;
+      margin-left: .7em;
+      font-family: 'Anonymous Pro', monospace;
+      text-align: center;
+      border: 1px white solid;
+      font: white;
+      background-color: darkgrey;
+    }
+
+    .newMoviesGenre {
+      font-size: 1em;
+      margin-left: 1.5em;
+      font-family: 'Anonymous Pro', monospace;
+      text-align: left;
+    }
+
 }
 
 @media screen and (max-width: 520px) {
