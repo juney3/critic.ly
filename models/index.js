@@ -10,7 +10,7 @@ const Schema = mongoose.Schema;
 Connect to DB
 */
 
-mongoose.connect('mongodb://localhost/criticly');
+mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/criticly' );
 
 
 /*

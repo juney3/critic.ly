@@ -165,7 +165,6 @@ function getReviewData(movie) {
     let allReviews = movie.reviews;
 
     getReviewData(movie);
-    console.log(reviewsRatings);
 
     // if there are ratings, calculate the average
     if (reviewsRatings.ratings != "No ratings currently") {
@@ -190,12 +189,7 @@ function getReviewData(movie) {
   $('.movieReviews').on('submit', function(event){
     event.preventDefault();
 
-    console.log(this);
-    console.log(event.target)
     let id = $(event.target).data('id');
-    console.log(id);
-    let deleteURL = `/api/reviews/${id}`
-    console.log(deleteURL)
     $.ajax({
       method: 'DELETE',
       url: `/api/reviews/${id}`,
@@ -256,8 +250,6 @@ Submit functions
 
     //Open a movie from one of the all movies buttons
     $('#allMovies').on('click', function(event){
-      console.log(this);
-      console.log(event.target);
       let movieId=$('.oneMovie').data('id');
 
       $.ajax({
