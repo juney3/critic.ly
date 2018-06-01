@@ -29,9 +29,14 @@
         <div class="topnav">
           <a href="/">HOME</a>
           <a class="active" href="/myReviews">MY REVIEWS</a>
-          <a href="register.html">REGISTER</a>
-          <a href="login.html">LOGIN</a>
-          <input type="text" placeholder="Movie Name">
+          <a href="/register">REGISTER</a>
+          <a href="/login">LOGIN</a>
+
+          <form class="movieSearch" action="/api/movies/show" method="GET">
+            <input type="text" id="oneMovie" name="movieTitle" class="movieTitle" placeholder="Movie Name"/>
+            <input class="btn btn-primary" type="submit" value="Search"/>
+          </form>
+
         </div>
       </nav>
 
@@ -56,7 +61,7 @@
     <div class="reviewsContent">
       <div class="movieContainer">
 
-        <div class="movieResults">
+        <div class="movieResult">
 
 
         </div>

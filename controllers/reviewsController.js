@@ -51,6 +51,7 @@ function create(req, res) {
       function(err, movieUpdated){
       if(err) {console.log(`movie update error: ${err}`)}
       console.log(`movie updated: ${movieUpdated}`);
+      
     })
     res.redirect('/myReviews');
   })

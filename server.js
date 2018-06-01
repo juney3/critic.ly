@@ -34,6 +34,15 @@ app.get('/myReviews', function (req, res) {
     res.sendFile('views/myReviews.html' , { root : __dirname});
 })
 
+app.get('/register', function (req, res) {
+    res.sendFile('views/register.html' , { root : __dirname});
+})
+
+app.get('/login', function (req, res) {
+    res.sendFile('views/login.html' , { root : __dirname});
+})
+
+
 // api index route
 app.get('/api', controllers.api.index);
 
@@ -48,6 +57,8 @@ app.post('/api/users', controllers.users.create);
 app.get('/api/movies', controllers.movies.index);
 
 app.post('/api/movies', controllers.movies.create);
+
+app.get('/api/movies/show/:title', controllers.movies.show);
 
 
 //review routes
