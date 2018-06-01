@@ -30,12 +30,7 @@
           <a href="/">HOME</a>
           <a class="active" href="/myReviews">MY REVIEWS</a>
           <a href="/register">REGISTER</a>
-          <a href="/login">LOGIN</a>
-
-          <form class="movieSearch" action="/api/movies/show" method="GET">
-            <input type="text" id="oneMovie" name="movieTitle" class="movieTitle" placeholder="Movie Name"/>
-            <input class="btn btn-primary" type="submit" value="Search"/>
-          </form>
+          <a href="/login">LOGIN</a
 
         </div>
       </nav>
@@ -45,15 +40,12 @@
     <section id="banner"></section>
 
 
-    <section id="createNewReview">
-      <h4>Movie entry form</h4>
-        <div class="form">
-          <form id="movieForm" action="/api/movies" method="POST">
-            <input type="text" name="title" id="title" placeholder="Movie Title" />
-            <input type="text" name="director" id="director" placeholder="Director" />
-            <input type="text" name="year" id="year" placeholder="year" />
-            <input type="text" name="genre" id="genre" placeholder="genre" />
-            <input type="submit" name="movieSubmit" id="movieSubmit" />
+      <section id="movieSearch">
+        <div class="form-group">
+          <h4>Search for a movie</h4>
+          <form class="movieSearch" action="/api/movies/show" method="GET">
+            <input type="text" id="oneMovie" class="form-control" name="movieTitle" class="movieTitle" placeholder="Movie Name"/>
+            <input class="btn btn-primary" type="submit" value="Search"/>
           </form>
         </div>
       </section>
