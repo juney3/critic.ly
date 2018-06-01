@@ -365,6 +365,24 @@ input[type="submit"]{
   margin: 1em;
 }
 
+#myRecentReviews {
+  background-color: white;
+  width: 70%;
+  border-radius: 30px;
+  padding: 5em;
+  margin-top: 20px;
+}
+
+#myRecentReviews article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#myRecentReviews .movieImg, #myRecentReviews .commentBox {
+  margin: 0;
+}
+
 /* recentReviewsStyles */
 h5 {
   text-align: center;
