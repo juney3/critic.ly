@@ -43,23 +43,23 @@ function create (req, res) {
 function show (req, res) {
   let movieTitle = req.params.title;
   console.log(req.params.title);
+  res.send('hi')
 
-  db.Movie.findOne({'title': movieTitle})
-  .populate('reviews')
-  .exec(function (err, movieFound) {
-    if (err) {
-      console.log(`error: ${err}`);
-    }
-    console.log(`movie found: ${movieFound.title}`);
-    res.json(movieFound);
-  })
+  // db.Movie.findOne({'title': movieTitle})
+  // .populate('reviews')
+  // .exec(function (err, movieFound) {
+  //   if (err) {
+  //     console.log(`error: ${err}`);
+  //   }
+  //   console.log(`movie found: ${movieFound.title}`);
+  //   res.json(movieFound);
+  // })
 };
 
 // GET one movie: /api/movie/id
 // Send back one movie as JSON by using the record id
 function retrieve (req, res) {
   let id = req.params.id;
-  console.log(req.params.id);
 
   db.Movie.findOne({'_id': id})
   .populate('reviews')

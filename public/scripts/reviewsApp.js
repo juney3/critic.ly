@@ -31,7 +31,7 @@ Render functions
       year = movie.year;
 
       let allMoviesTemplate =
-      `<button class="btn btn-info oneMovie" data-id="${id}">
+      `<button class="btn btn-info singleMovie" data-id="${id}">
         <p>${title}</p>
         <p>${year}</p>
       </button>`
@@ -71,8 +71,7 @@ Render functions
         </div>
       </div>`;
 
-    $('.movieResult').empty();
-    $('.movieResult').append(movieTemplate);
+    $('.movieResult').empty().append(movieTemplate);
   }
 
   // render new review
@@ -92,10 +91,8 @@ Render functions
           <p>Date: ${date}</p>
         </div>
       <div class="reviewChanges col-4">
-
       <!-- User changes -->
         <button type="button" name="reviewUpdate" class="btn btn-primary reviewUpdate">Update review</button>
-
           <form action="/api/reviews/${id}" method="DELETE" class="deleteForm" data-id="${id}">
             <input type="submit" name="reviewDelete" class="btn btn-danger reviewDelete" value="Delete review"/>
           </form>
@@ -184,12 +181,12 @@ function getReviewData(movie) {
     if (reviewsRatings.reviews != "No reviews currently") {
       renderAllReviews(reviewsRatings);
     }
+    console.log('movie rendered');
   }
 
   //Delete review
   $('.movieReviews').on('submit', function(event){
     event.preventDefault();
-
     let id = $(event.target).data('id');
     let deleteURL = `/api/reviews/${id}`
     $.ajax({
@@ -224,6 +221,7 @@ Submit functions
   $('.movieSearch').on('submit', function(event){
     event.preventDefault();
     let movieTitle = $('#oneMovie').val();
+    console.log(movieTitle;)
 
     $.ajax({
       method: 'GET',
@@ -252,7 +250,9 @@ Submit functions
 
     //Open a movie from one of the all movies buttons
     $('#allMovies').on('click', function(event){
-      let movieId=$('.oneMovie').data('id');
+      console.log(this);
+      console.log(event.target);
+      let movieId=$('.singleMovie').data('id');
 
       $.ajax({
         method: 'GET',
