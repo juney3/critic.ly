@@ -3,10 +3,9 @@ function showRecentReviews(reviews){
   reviews.forEach(function(review){
     let reviewTemplate =
     `<div class="newReview"><p class="recentReviewsMovieName"> ${review.movie.title}</p>
-    <hr/>
     <p class="recentReviewsReview">Review: ${review.reviewText}</p>
     <p class="starRating">${Array.apply(null, new Array(review.rating)).map(function (x) { return `<img src="../images/full-star.png"/>` }).join('')}</p>
-    <p class="recentReviewsRating">Reviewer Star Rating: ${review.rating}</p>
+    <p class="recentReviewsRating"> Reviewer's Star Rating: ${review.rating}</p>
     <p class="recentReviewsDate">Date: ${review.createdAt.slice(0,10)}</p>
     </div>`;
 
@@ -32,7 +31,7 @@ function addNewlySubmittedMovies(movieList) {
   movieList.forEach(function(movie) {
     let newlyAddedMovies = `
   <div class="newMovie4Review">
-  <p class="newMoviesTitle"> Movie Title: ${movie.title} </p>
+  <p class="newMoviesTitle"> ${movie.title} </p>
   <p class="newMoviesDirector"> Director: ${movie.director} </p>
   <p class="newMoviesYear"> Year Released: ${movie.year} </p>
   <p class="newMoviesGenre"> Genres: ${movie.genre} </p>
