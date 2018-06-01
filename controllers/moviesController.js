@@ -41,7 +41,8 @@ function create (req, res) {
 // GET one movie: /api/movie/show/title
 // Send back one movie as JSON by using the title
 function show (req, res) {
-  let movieTitle = req.query.title;
+  let movieTitle = req.params.title;
+  console.log(req.params);
   db.Movie.findOne({'title': movieTitle})
   .populate('reviews')
   .exec(function (err, movieFound) {

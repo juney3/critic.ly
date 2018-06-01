@@ -187,10 +187,7 @@ function getReviewData(movie) {
   $('.movieReviews').on('submit', function(event){
     event.preventDefault();
     let id = $(event.target).data('id');
-<<<<<<< HEAD
-=======
     let deleteURL = `/api/reviews/${id}`
->>>>>>> 678b8917208d118abf2a83a4c1417b65eb2d8293
     $.ajax({
       method: 'DELETE',
       url: `/api/reviews/${id}`,
@@ -222,8 +219,9 @@ Submit functions
   // Movie search form submissions (name only)
   $('.movieSearch').on('submit', function(event){
     event.preventDefault();
-    let movieTitle = $('#oneMovie').val();
-    console.log(movieTitle;)
+    console.log(this);
+    let movieTitle = $('#searchForMovie').val();
+    console.log(movieTitle);
 
     $.ajax({
       method: 'GET',
@@ -250,19 +248,6 @@ Submit functions
       });
     })
 
-    //Open a movie from one of the all movies buttons
-    $('#allMovies').on('click', function(event){
-      console.log(this);
-      console.log(event.target);
-      let movieId=$('.singleMovie').data('id');
-
-      $.ajax({
-        method: 'GET',
-        url: `/api/movies/${movieId}`,
-        success: handleMovie,
-        error: handleError
-      });
-    })
 
     findMovies();
 })
