@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const db = require('./models');
 const controllers = require('./controllers');
+const mo = require('method-override');
 
 // Express configuration
 app.use(express.static('public'));
@@ -33,7 +34,16 @@ app.get('/myReviews', function (req, res) {
     res.sendFile('views/myReviews.html' , { root : __dirname});
 })
 
-// index route
+app.get('/register', function (req, res) {
+    res.sendFile('views/register.html' , { root : __dirname});
+})
+
+app.get('/login', function (req, res) {
+    res.sendFile('views/login.html' , { root : __dirname});
+})
+
+
+// api index route
 app.get('/api', controllers.api.index);
 
 
@@ -51,13 +61,23 @@ app.get('/api/movies/recent', controllers.movies.recent);
 
 app.post('/api/movies', controllers.movies.create);
 
+app.get('/api/movies/show/:title', controllers.movies.show);
+
+app.get('/api/movies/:id', controllers.movies.retrieve)
+
 
 //review routes
+app.delete('/api/reviews/:id', controllers.reviews.destroy);
+
 app.get('/api/reviews', controllers.reviews.index);
 
 app.get('/api/reviews/recent', controllers.reviews.recent);
 
-app.post('/api/movies/:id/reviews', controllers.reviews.create);
+app.post('/api/movies/:id', controllers.reviews.create);
+
+app.put('/api/reviews/:id', controllers.reviews.update);
+
+
 
 /*
 port*/

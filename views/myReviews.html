@@ -22,45 +22,48 @@
     <script type="text/javascript"
      src="scripts/reviewsApp.js" defer></script>
 
-  </head>
+</head>
   <body>
     <header>
       <nav>
         <div class="topnav">
           <a href="/">HOME</a>
           <a class="active" href="/myReviews">MY REVIEWS</a>
-          <a href="register.html">REGISTER</a>
-          <a href="login.html">LOGIN</a>
-          <input type="text" placeholder="Movie Name">
+          <a href="/register">REGISTER</a>
+          <a href="/login">LOGIN</a>
         </div>
       </nav>
-
     </header>
 
     <section id="banner"></section>
 
+    <section id="movieSearch">
+      <div class="form-group searchForm">
+        <h4>Search for a movie</h4>
+        <form class="movieSearch" action="/api/movies/show" method="GET">
+          <input type="text" id="oneMovie" class="form-control" name="movieTitle" class="movieTitle" placeholder="Movie Name"/>
+          <input class="btn btn-primary" type="submit" value="Search"/>
+        </form>
+      </div>
+    </section>
 
-    <section id="createNewReview">
-      <h4>Movie entry form</h4>
-        <div class="form">
-          <form id="movieForm" action="/api/movies" method="POST">
-            <input type="text" name="title" id="title" placeholder="Movie Title" />
-            <input type="text" name="director" id="director" placeholder="Director" />
-            <input type="text" name="year" id="year" placeholder="year" />
-            <input type="text" name="genre" id="genre" placeholder="genre" />
-            <input type="submit" name="movieSubmit" id="movieSubmit" />
-          </form>
+    <section id="movieAndReviews">
+      <div class="reviewsContent">
+        <div class="movieContainer">
+          <div class="movieResult">
+            <!-- Append found movie here -->
+          </div>
+          <div class="movieReviews">
+            <!-- Append movie reviews here -->
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-    <div class="reviewsContent">
-        <div class="movieResults">
+    <section id="allMovies">
+      <!-- Append movies here -->
+    </section>
 
-        </div>
-        <div class="myReviews">
-
-        </div>
-    </div>
 
     <section id="myRecentReviews">
       <article>
