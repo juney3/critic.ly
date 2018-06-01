@@ -31,3 +31,4 @@ Planned Features
   - We created models and methods for user creation but didn't have time to implement user registration or login functionality
 * Integrate data from the OMDB API to minimize errors when creating movie reviews, and to include movie poster images
 * Create social features like following, rating reviews, and leaderboards
+* Fully implement a way to open movies from a list or group on the reviews page
