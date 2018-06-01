@@ -25,11 +25,11 @@
     <header>
       <nav>
         <div class="topnav">
-          <a class="active" href="#home">HOME</a>
-          <a href="myReviews">MY REVIEWS</a>
-          <a href="register.html">REGISTER</a>
-          <a href="login.html">LOGIN</a>
-          <input type="text" placeholder="Movie Name">
+          <a class="active" href="#home">home</a>
+          <a href="myReviews">my reviews</a>
+          <a href="register.html">register</a>
+          <a href="login.html">login</a>
+          <input type="text" placeholder="movie name">
         </div>
       </nav>
       <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -69,10 +69,34 @@
       </nav> -->
     </header>
 
+  <!-- <div class="container">
+  <img class="img-responsive" src="/images/filmStripBgBlack" alt="film strip background" width="460" height="345"> -->
+
     <section id="banner">
+      <p class="line anim-typewriter"> // critic.ly
+      </p>
     </section>
 
-    <section id="recentReviews">
+    <section id="createNewReview">
+      <h4>movie entry form</h4>
+        <div class="form">
+          <form id="movieForm" action="/api/movies" method="POST">
+            <input type="text" name="title" id="title" placeholder="Movie Title" />
+            <input type="text" name="director" id="director" placeholder="Director" />
+            <input type="text" name="year" id="year" placeholder="year" />
+            <input type="text" name="genre" id="genre" placeholder="genre" />
+            <input type="submit" name="movieSubmit" id="movieSubmit" />
+          </form>
+        </div>
+      </section>
+
+    <h5 id="recentReviewsHeading"> most recent reviews</h5>
+
+    <div class="recentReviews"></div>
+
+
+
+    <!-- <section id="recentReviews">
       <article>
         <section class="userMovieReview">
           <div class="movieImg">
@@ -91,7 +115,7 @@
           <a onclick="rateIt(this)" id="_5" title="Life Changing!" onmouseover="rating(this)" onmouseout="off(this)"></a>
         </div>
          <span id="rateStatus"></span>
-          <span id="ratingSaved"></span>
+          <span id="ratingSaved"></span> -->
 <!--
           <div id="userRating">
             <p>  * * * * * </p>
@@ -102,7 +126,7 @@
             <span>?</span>
             <span>?</span>
           </div> </div> -->
-          </div>
+          <!-- </div>
         </section>
       </article>
 
@@ -124,7 +148,7 @@
           <a onclick="rateIt(this)" id="_5" title="Life Changing!" onmouseover="rating(this)" onmouseout="off(this)"></a>
         </div>
          <span id="rateStatus"></span>
-          <span id="ratingSaved"></span>
+          <span id="ratingSaved"></span> -->
 <!--
           <div id="userRating">
             <p>  * * * * * </p>
@@ -135,17 +159,10 @@
             <span>?</span>
             <span>?</span>
           </div> </div> -->
-        </div>
+        <!-- </div>
         </section>
       </article>
 
-
-    <h4> Reviews </h4>
-    <div class="reviewResults">
-    </div>
-
-    <div class="mostRecentReviews">
-    </div>
 
     <section id="newMovieForm">
       <h2 class="text-center"> Create New Movie </h2>
@@ -168,9 +185,25 @@
             </div>
               <input class="form-control input-lg" type="submit" name="movieSubmit" id=movieSubmit/>
       </form>
-      </div>
+      </div> -->
+<!--
+    </section> -->
 
-    </section>
 
+    </div>
+    <div id="newlyAddedMoviesHeading">
+      <h5> Newly Added Movies</h5></div>
+
+    </div>
+    <div id="newlyAddedMovies">
+
+    <hr/>
+    </div>
+
+    <footer>
+    </br>
+      <p>&copy; 2018 June & JP</p>
+
+    </footer>
   </body>
 </html>

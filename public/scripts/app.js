@@ -2,16 +2,17 @@ function showRecentReviews(reviews){
   console.log(reviews);
   reviews.forEach(function(review){
     let reviewTemplate =
-    `<h5>Recent User Reviews</h5>
-    <p>Movie: ${review.movie.title}</p>
-    <p>Review: ${review.reviewText}</p>
-    <p>Rating: ${review.rating}</p>
-    <p>Date: ${review.createdAt}</p>
-    <br>`;
+    `<div class="newReview"><p class="recentReviewsMovieName"> ${review.movie.title}</p>
+    <p class="recentReviewsReview">Review: ${review.reviewText}</p>
+    <p class="starRating">${Array.apply(null, new Array(review.rating)).map(function (x) { return `<img src="../images/full-star.png"/>` }).join('')}</p>
+    <p class="recentReviewsRating"> Reviewer's Star Rating: ${review.rating}</p>
+    <p class="recentReviewsDate">Date: ${review.createdAt.slice(0,10)}</p>
+    </div>`;
 
-    $('.mostRecentReviews').append(reviewTemplate);
-  })
-}
+    $('.recentReviews').append(reviewTemplate);
+    })
+  }
+
 
 function handleError(err) {
 	console.log(`O noes! The following error occurred: ${err}`);
@@ -25,10 +26,34 @@ function findRecentReviews() {
     error: handleError
   })
 }
-
-
-findRecentReviews();
 //
+function addNewlySubmittedMovies(movieList) {
+  movieList.forEach(function(movie) {
+    let newlyAddedMovies = `
+  <div class="newMovie4Review">
+  <p class="newMoviesTitle"> ${movie.title} </p>
+  <p class="newMoviesDirector"> Director: ${movie.director} </p>
+  <p class="newMoviesYear"> Year Released: ${movie.year} </p>
+  <p class="newMoviesGenre"> Genres: ${movie.genre} </p>
+  </div>
+  `;
+
+  $('#newlyAddedMovies').append(newlyAddedMovies);
+  })
+}
+
+function findRecentMovies() {
+  $.ajax({
+    method: 'GET',
+    url: '/api/movies/recent',
+    success: addNewlySubmittedMovies,
+    error: handleError
+  })
+}
+
+findRecentMovies();
+
+findRecentReviews(); //
 // /**
 //  * Star rating class
 //  * @constructor

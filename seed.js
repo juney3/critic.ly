@@ -1,65 +1,65 @@
 var db = require("./models");
 
 var movieList = [{
-  movieTitle: 'Deadpool 2',
+  title: 'Deadpool 2',
   director: 'David Leitch',
   year: '2018',
-  genres: [ 'action', 'adventure', 'comedy']
+  genre: [ 'action', 'adventure', 'comedy']
 }, {
-  movieTitle: 'Avengers: Infinity War',
+  title: 'Avengers: Infinity War',
   director: 'Anthony/Joe Russo',
   year: '2018',
-  genres: [ 'action', 'adventure', 'fantasy']
+  genre: [ 'action', 'adventure', 'fantasy']
 }, {
-  movieTitle: 'A Quiet Place',
+  title: 'A Quiet Place',
   director: 'John Krasinski',
   year: '2018',
-  genres: [ 'drama', 'horror', 'sci-fi']
+  genre: [ 'drama', 'horror', 'sci-fi']
 }, {
-  movieTitle: 'Coco',
+  title: 'Coco',
   director: 'Lee Unkrich',
   year: '2017',
-  genres: [ 'animation', 'adventure', 'comedy']
+  genre: [ 'animation', 'adventure', 'comedy']
 }, {
-  movieTitle: 'The Incredibles',
+  title: 'The Incredibles',
   director: 'Brad Bird',
   year: '2004',
-  genres: [ 'animation', 'adventure', 'action']
+  genre: [ 'animation', 'adventure', 'action']
 }, {
-  movieTitle: 'Game Night',
+  title: 'Game Night',
   director: 'John Francis Daley',
   year: '2018',
-  genres: [ 'comedy', 'crime', 'mystery']
+  genre: [ 'comedy', 'crime', 'mystery']
 }, {
-  movieTitle: 'The Kissing Booth',
+  title: 'The Kissing Booth',
   director: 'Vince Marcello',
   year: '2018',
-  genres: [ 'comedy', 'romance']
+  genre: [ 'comedy', 'romance']
 }, {
-  movieTitle: "Harry Potter and the Sorcerer's Stone",
+  title: "Harry Potter and the Sorcerer's Stone",
   director: 'Chris Columbus',
   year: '2001',
-  genres: [ 'adventure', 'family', 'fantasy']
+  genre: [ 'adventure', 'family', 'fantasy']
 }, {
-  movieTitle: 'Forrest Gump',
+  title: 'Forrest Gump',
   director: 'Robert Zemeckis',
   year: '1994',
-  genres: [ 'drama', 'romance']
+  genre: [ 'drama', 'romance']
 }, {
-  movieTitle: 'Thor: Ragnarok',
+  title: 'Thor: Ragnarok',
   director: 'Taika Waititi',
   year: '2017',
-  genres: [ 'action', 'adventure', 'comedy']
+  genre: [ 'action', 'adventure', 'comedy']
 }, {
-  movieTitle: 'I Kill Giants',
+  title: 'I Kill Giants',
   director: 'Anders Walter',
   year: '2017',
-  genres: [ 'drama', 'fantasy', 'thriller']
+  genre: [ 'drama', 'fantasy', 'thriller']
 }, {
-  movieTitle: 'Blade Runner 2049',
+  title: 'Blade Runner 2049',
   director: 'Denis Villeneuve',
   year: '2017',
-  genres: [ 'drama', 'mystery', 'sci-fi']
+  genre: [ 'drama', 'mystery', 'sci-fi']
 }];
 
 // seed data
