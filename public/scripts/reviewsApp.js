@@ -44,18 +44,17 @@ $(document).ready(function() {
         </div>
       </div>`;
 
-    $('.movieResult').prepend(movieTemplate);
+    $('.movieResult').append(movieTemplate);
   }
 
 
   // render new review
   function renderReview(review) {
-    reviewArr = reviewsRatings.reviews;
-
-    id = review._id;
-    reviewText = review.reviewText;
+    console.log(review)
+    id = review.id;
+    reviewText = review.content;
     rating = review.rating;
-    let date = review.createdAt.slice(0,10);
+    let date = review.Date.slice(0,10);
 
     let reviewTemplate =
     `<div class="reviewSection">
@@ -64,7 +63,7 @@ $(document).ready(function() {
         <div class="reviewData col-8">
           <p>Review: ${reviewText}</p>
           <p>User rating: ${rating}</p>
-          <p>Date: ${review.createdAt.slice(0, 10)}</p>
+          <p>Date: ${date}</p>
         </div>
       <div class="reviewChanges col-4">
       <!-- User changes -->
@@ -75,7 +74,15 @@ $(document).ready(function() {
           </div>
         </div>
       </div>`;
-      $('.review').prepend(movieReviews);
+
+      $('.movieReviews').append(reviewTemplate);
+  }
+
+  // Render all reviews
+  function renderAllReviews(ratingsReviews) {
+    reviewArr = ratingsReviews.reviews;
+
+    reviewArr.forEach(renderReview(review));
   }
 
 // Collect all review data from the movie record
@@ -130,6 +137,8 @@ function getReviewData(movie) {
 
     getReviewData(movie);
     calculateAverageRating(reviewsRatings);
+    // renderMovie(movie, avgRating);
+    // renderReview(reviewsRatings);
 
     console.log(avgRating)
     console.log(reviewsRatings)
