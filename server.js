@@ -26,10 +26,6 @@ app.get('/', function (req, res) {
     res.sendFile('views/index.html' , { root : __dirname});
 })
 
-app.get('/reviews', function (req, res) {
-    res.sendFile('views/testUserForm.html' , { root : __dirname});
-})
-
 app.get('/myReviews', function (req, res) {
     res.sendFile('views/myReviews.html' , { root : __dirname});
 })

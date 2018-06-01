@@ -71,7 +71,8 @@ Render functions
         </div>
       </div>`;
 
-    $('.movieResult').empty().append(movieTemplate);
+    $('.movieResult').empty();
+    $('.movieResult').append(movieTemplate);
   }
 
   // render new review
