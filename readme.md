@@ -4,7 +4,7 @@ Collaboration between Jean Paul Dualan and June Yoshii. Movie review site using 
 Project description:
 critic.ly is an app for posting and reading movie reviews. Users can add movies, and also create and delete reviews and ratings for other users to see.
 
-Link to project hosted on Heroku
+https://immense-mountain-14913.herokuapp.com/
 
 Technologies Used
 * JavaScript and jQuery
@@ -18,7 +18,7 @@ Technologies Used
 * HTML
 
 Existing Features
-What features does your app have? 
+Users can:
 * Create movies
 * Create reviews
 * View movies
