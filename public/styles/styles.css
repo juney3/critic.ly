@@ -1,5 +1,5 @@
 body {
-  background-image: url("../images/filmstripbgblack.png");
+  background-image: url("../images/filmstripedit.png");
   background-position: center;
   background-repeat: repeat-y;
   background-size: contain;
@@ -83,14 +83,14 @@ body {
 
 #recentReviews {
   height: auto;
-  width: 79%;
+  width: 70%;
   margin: 0 auto;
 
 }
 
 #newlyAddedMovies {
   height: auto;
-  width: 79%;
+  width: 70%;
   margin: 0 auto;
 }
 
@@ -108,11 +108,11 @@ body {
 .newReview {
   border-radius: 75px;
   background-color: light-grey;
-  border: 3em solid black;
+  border: 2em solid black;
   padding: 20px 0 20px;
   background: lightgrey;
   height: auto;
-  width: 79%;
+  width: 70%;
   margin: 0 auto;
 }
 
@@ -392,7 +392,7 @@ footer {
 .newMovie4Review {
   border-radius: 75px;
   background-color: light-grey;
-  border: 3em solid black;
+  border: 2em solid black;
   padding: 20px 0 20px;
   background: lightgrey;
   height: auto;

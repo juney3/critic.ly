@@ -33,7 +33,6 @@ function addNewlySubmittedMovies(movieList) {
     let newlyAddedMovies = `
   <div class="newMovie4Review">
   <p class="newMoviesTitle"> Movie Title: ${movie.title} </p>
-
   <p class="newMoviesDirector"> Director: ${movie.director} </p>
   <p class="newMoviesYear"> Year Released: ${movie.year} </p>
   <p class="newMoviesGenre"> Genres: ${movie.genre} </p>
