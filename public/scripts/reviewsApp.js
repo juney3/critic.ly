@@ -71,7 +71,8 @@ Render functions
         </div>
       </div>`;
 
-    $('.movieResult').empty().append(movieTemplate);
+    $('.movieResult').empty();
+    $('.movieResult').append(movieTemplate);
   }
 
   // render new review
@@ -182,7 +183,6 @@ function getReviewData(movie) {
     if (reviewsRatings.reviews != "No reviews currently") {
       renderAllReviews(reviewsRatings);
     }
-    console.log('movie rendered');
   }
 
   //Delete review
@@ -190,6 +190,10 @@ function getReviewData(movie) {
     event.preventDefault();
 
     let id = $(event.target).data('id');
+<<<<<<< HEAD
+=======
+    let deleteURL = `/api/reviews/${id}`
+>>>>>>> 678b8917208d118abf2a83a4c1417b65eb2d8293
     $.ajax({
       method: 'DELETE',
       url: `/api/reviews/${id}`,
