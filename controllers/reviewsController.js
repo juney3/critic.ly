@@ -104,31 +104,6 @@ function destroy(req, res) {
         }
       )
     })
-  // db.Review.findOne({'_id': req.params.id})
-  // .populate('movie')
-  // .exec(function(err, reviewFound){
-  //   if (err) {console.log(`error: ${err}`)}
-  //   movieId = reviewFound.movie._id;
-  //   db.Movie.findOneAndUpdate(
-  //     {'_id': movieId},
-  //     {$pull: {'reviews': req.params.id}},
-  //     {new: true},
-  //     function (err, movieUpdated) {
-  //       db.Review.findOneAndRemove({'_id': req.params.id}, function(err, reviewDeleted){
-  //         if (err) {console.log(`error: ${err}`)}
-  //         console.log(`review deleted: ${reviewDeleted}`)
-  //         db.Movie.findOne({'_id': movieId})
-  //         .populate('reviews')
-  //         .exec(function(err, movieFound){
-  //           if (err) {console.log(`error: ${err}`)}
-  //           console.log(movieFound);
-  //           res.json(movieFound);
-  //         })
-  //       })
-  //     }
-  //   )
-  //
-  // })
 }
 
 module.exports = {
