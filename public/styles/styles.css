@@ -202,7 +202,7 @@ h4 {
 }
 
 #createNewReview {
-  width: 80%;
+  width: 73%;
   margin: 0 auto;
   background-color: black;
 }
@@ -432,9 +432,13 @@ footer {
 .newMoviesTitle {
   font-size: 2em;
   font-weight: bold;
+  width: 90%;
   margin-left: 1em;
   font-family: courier;
   text-align: center;
+  border: 1px white solid;
+  font: white;
+  background-color: darkgrey;
 }
 
 .newMoviesDirector {
