@@ -72,6 +72,20 @@ function retrieve (req, res) {
   })
 };
 
+function recent (req, res) {
+  db.Movie.find({})
+  .sort({
+      'createdAt' : -1
+    })
+  .limit(5)
+  .populate('review')
+  .exec(function(err, movies){
+    if (err) {console.log(err)};
+    console.log(movies);
+    res.json(movies);
+  })
+}
+
 
 /*
 Export the functions
@@ -81,5 +95,6 @@ module.exports = {
   index: index,
   create: create,
   show: show,
-  retrieve: retrieve
+  retrieve: retrieve,
+  recent: recent
 }
