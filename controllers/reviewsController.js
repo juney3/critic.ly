@@ -35,8 +35,6 @@ function recent(req, res) {
 function create(req, res) {
   let newReview = req.body;
   let movieId = req.params.id;
-  console.log(req.params.id);
-  console.log(req.body);
 
   db.Review.create(newReview, function (err, reviewCreated) {
     if (err) {
@@ -51,9 +49,14 @@ function create(req, res) {
       function(err, movieUpdated){
       if(err) {console.log(`movie update error: ${err}`)}
       console.log(`movie updated: ${movieUpdated}`);
-      
+      let id = movieUpdated._id;
+      db.Movie.findOne({'_id': id})
+      .populate('reviews')
+      .exec(function(err, movieFound) {
+        if(err) {console.log(`movie find error: ${err}`)}
+        res.json(movieFound);
+      })
     })
-    res.redirect('/myReviews');
   })
 }
 

@@ -44,7 +44,7 @@ $(document).ready(function() {
         </div>
       </div>`;
 
-    $('.movieResult').append(movieTemplate);
+    $('.movieResult').html(movieTemplate);
   }
 
 
@@ -75,7 +75,7 @@ $(document).ready(function() {
         </div>
       </div>`;
 
-      $('.movieReviews').append(reviewTemplate);
+      $('.movieReviews').prepend(reviewTemplate);
   }
 
   // Render all reviews
@@ -195,34 +195,19 @@ Submit functions
     this.reset();
   })
 
-  // Movie creation form submission
-    $('#movieForm').on('submit', function(event){
-      event.preventDefault();
-      $.ajax({
-        method: 'POST',
-        url: '/api/movies',
-        data: $(this).serialize(),
-        success: function(movie){
-          console.log(movie);
-          handleMovie(movie);
-        },
-        error: handleError
-      });
-      this.reset();
-    })
-
     // Review form submission
     // Add an event listener for all children of reviewForm
-    $('.reviewForm').on('submit', '.movieResults', function(event){
+    $('.movieResult').on('submit',  function(event){
       event.preventDefault();
+      console.log(event);
 
-      let movieId = $(movieSection).data('id');
+      let movieId = $('.movieSection').data('id');
 
       $.ajax({
         method: 'POST',
         url: `/api/movies/${movieId}/reviews`,
         data: $('.reviewForm').serialize(),
-        success: renderReview,
+        success: handleMovie,
         error: handleError
       });
     })

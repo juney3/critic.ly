@@ -306,6 +306,9 @@ input[type="submit"]{
   padding: 2em;
 }
 
+.movieResult {
+  width: 90%;
+}
 .movieContent {
   display: flex;
   flex-direction: row;
