@@ -60,17 +60,19 @@ app.post('/api/movies', controllers.movies.create);
 
 app.get('/api/movies/show/:title', controllers.movies.show);
 
+app.get('/api/movies/:id', controllers.movies.retrieve)
+
 
 //review routes
-app.get('/api/reviews/:id/delete', controllers.reviews.destroy);
+app.delete('/api/reviews/:id', controllers.reviews.destroy);
 
 app.get('/api/reviews', controllers.reviews.index);
 
 app.get('/api/reviews/recent', controllers.reviews.recent);
 
-app.post('/api/movies/:id/reviews', controllers.reviews.create);
+app.post('/api/movies/:id', controllers.reviews.create);
 
-app.put('/api/reviews/:id/update', controllers.reviews.update);
+app.put('/api/reviews/:id', controllers.reviews.update);
 
 
 

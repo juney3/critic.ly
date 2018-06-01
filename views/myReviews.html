@@ -22,7 +22,7 @@
     <script type="text/javascript"
      src="scripts/reviewsApp.js" defer></script>
 
-  </head>
+</head>
   <body>
     <header>
       <nav>
@@ -30,36 +30,40 @@
           <a href="/">HOME</a>
           <a class="active" href="/myReviews">MY REVIEWS</a>
           <a href="/register">REGISTER</a>
-          <a href="/login">LOGIN</a
-
+          <a href="/login">LOGIN</a>
         </div>
       </nav>
-
     </header>
 
     <section id="banner"></section>
 
+    <section id="movieSearch">
+      <div class="form-group searchForm">
+        <h4>Search for a movie</h4>
+        <form class="movieSearch" action="/api/movies/show" method="GET">
+          <input type="text" id="oneMovie" class="form-control" name="movieTitle" class="movieTitle" placeholder="Movie Name"/>
+          <input class="btn btn-primary" type="submit" value="Search"/>
+        </form>
+      </div>
+    </section>
 
-      <section id="movieSearch">
-        <div class="form-group searchForm">
-          <h4>Search for a movie</h4>
-          <form class="movieSearch" action="/api/movies/show" method="GET">
-            <input type="text" id="oneMovie" class="form-control" name="movieTitle" class="movieTitle" placeholder="Movie Name"/>
-            <input class="btn btn-primary" type="submit" value="Search"/>
-          </form>
-        </div>
-      </section>
-
-    <div class="reviewsContent">
-      <div class="movieContainer">
-        <div class="movieResult">
-          <!-- Append found movie here -->
-        </div>
-        <div class="movieReviews">
-          <!-- Append movie reviews here -->
+    <section id="movieAndReviews">
+      <div class="reviewsContent">
+        <div class="movieContainer">
+          <div class="movieResult">
+            <!-- Append found movie here -->
+          </div>
+          <div class="movieReviews">
+            <!-- Append movie reviews here -->
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section id="allMovies">
+      <!-- Append movies here -->
+    </section>
+
 
     <section id="myRecentReviews">
       <article>

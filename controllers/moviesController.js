@@ -39,12 +39,29 @@ function create (req, res) {
 }
 
 // GET one movie: /api/movie/show/title
-// Send back one movie as JSON
+// Send back one movie as JSON by using the title
 function show (req, res) {
   let movieTitle = req.params.title;
   console.log(req.params.title);
 
   db.Movie.findOne({'title': movieTitle})
+  .populate('reviews')
+  .exec(function (err, movieFound) {
+    if (err) {
+      console.log(`error: ${err}`);
+    }
+    console.log(`movie found: ${movieFound.title}`);
+    res.json(movieFound);
+  })
+};
+
+// GET one movie: /api/movie/id
+// Send back one movie as JSON by using the record id
+function retrieve (req, res) {
+  let id = req.params.id;
+  console.log(req.params.id);
+
+  db.Movie.findOne({'_id': id})
   .populate('reviews')
   .exec(function (err, movieFound) {
     if (err) {
@@ -64,4 +81,5 @@ module.exports = {
   index: index,
   create: create,
   show: show,
+  retrieve: retrieve
 }

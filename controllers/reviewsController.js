@@ -78,13 +78,57 @@ function update(req, res) {
   }
 
 function destroy(req, res) {
-  let reviewID = req.params.id;
-  console.log(req.params.id)
+  let movieId;
+  let id = req.params.id;
 
-  db.Review.findByIdAndRemove(reviewId, function(err, reviewDeleted){
-    if (err) {console.log(`error: ${err}`)}
-    res.json(reviewDeleted);
-  })
+    db.Review.findOne({'_id': id}, function(err, reviewFound){
+      if (err) {console.log(`error: ${err}`)}
+      movieId = reviewFound.movie._id;
+      db.Movie.findOneAndUpdate(
+        {'_id': movieId},
+        {$pull: {'reviews': movieId}},
+        {new: true},
+        function(err, updatedMovie) {
+          if (err) {console.log(`error: ${err}`)}
+          db.Review.findOneAndRemove({'_id': id}, function(err, deletedReview){
+            if (err) {console.log(`error: ${err}`)}
+            console.log(`review deleted: ${deletedReview}`);
+            db.Movie.findOne({'_id': movieId})
+            .populate('reviews')
+            .exec(function(err, movieFound){
+              if (err) {console.log(`error: ${err}`)}
+              console.log(`movie found: ${movieFound}`)
+              res.json(movieFound);
+            })
+          })
+        }
+      )
+    })
+  // db.Review.findOne({'_id': req.params.id})
+  // .populate('movie')
+  // .exec(function(err, reviewFound){
+  //   if (err) {console.log(`error: ${err}`)}
+  //   movieId = reviewFound.movie._id;
+  //   db.Movie.findOneAndUpdate(
+  //     {'_id': movieId},
+  //     {$pull: {'reviews': req.params.id}},
+  //     {new: true},
+  //     function (err, movieUpdated) {
+  //       db.Review.findOneAndRemove({'_id': req.params.id}, function(err, reviewDeleted){
+  //         if (err) {console.log(`error: ${err}`)}
+  //         console.log(`review deleted: ${reviewDeleted}`)
+  //         db.Movie.findOne({'_id': movieId})
+  //         .populate('reviews')
+  //         .exec(function(err, movieFound){
+  //           if (err) {console.log(`error: ${err}`)}
+  //           console.log(movieFound);
+  //           res.json(movieFound);
+  //         })
+  //       })
+  //     }
+  //   )
+  //
+  // })
 }
 
 module.exports = {

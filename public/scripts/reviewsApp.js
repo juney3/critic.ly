@@ -4,21 +4,48 @@ console.log('Sanity check');
 $(document).ready(function() {
   console.log('reviewsApp.js loaded');
 
-  // Global variables
+  /*
+  Global variables
+  */
+
   let reviewArr = [];
   let ratingArr = [];
   let reviewsRatings = {};
   let avgRating = 0;
   let id;
+  let movie;
   let reviewText;
   let rating;
+  let title;
+  let year;
+
+
+/*
+Render functions
+*/
+  // Render all movies from findMovies
+  function renderAllMovies(movies) {
+    movies.forEach(function(movie){
+      id = movie._id;
+      title = movie.title;
+      year = movie.year;
+
+      let allMoviesTemplate =
+      `<button class="btn btn-info oneMovie" data-id="${id}">
+        <p>${title}</p>
+        <p>${year}</p>
+      </button>`
+
+      $('#allMovies').append(allMoviesTemplate)
+    })
+  }
 
   // Render movie found from search
   function renderMovie(movie, avgRating) {
     id = movie._id;
-    let title = movie.title;
+    title = movie.title;
+    year = movie.year;
     let director = movie.director;
-    let year = movie.year;
     let genre = movie.genre;
 
     let movieTemplate =
@@ -44,13 +71,11 @@ $(document).ready(function() {
         </div>
       </div>`;
 
-    $('.movieResult').html(movieTemplate);
+    $('.movieResult').empty().append(movieTemplate);
   }
-
 
   // render new review
   function renderReview(review) {
-    console.log(review)
     id = review.id;
     reviewText = review.content;
     rating = review.rating;
@@ -66,14 +91,16 @@ $(document).ready(function() {
           <p>Date: ${date}</p>
         </div>
       <div class="reviewChanges col-4">
+
       <!-- User changes -->
         <button type="button" name="reviewUpdate" class="btn btn-primary reviewUpdate">Update review</button>
-        <form action="/api/reviews/${id}/delete" method="DELETE">
-              <button type="button" name="reviewDelete" class="btn btn-danger reviewDelete">Delete review</button>
-            </form>
-          </div>
+
+          <form action="/api/reviews/${id}" method="DELETE" class="deleteForm" data-id="${id}">
+            <input type="submit" name="reviewDelete" class="btn btn-danger reviewDelete" value="Delete review"/>
+          </form>
         </div>
-      </div>`;
+      </div>
+    </div>`;
 
       $('.movieReviews').prepend(reviewTemplate);
   }
@@ -81,8 +108,6 @@ $(document).ready(function() {
   // Render all reviews
   function renderAllReviews(reviewsRatings) {
     reviewArr = reviewsRatings.reviews;
-    console.log(`this is renderAllReviews: ${reviewArr}`)
-
     reviewArr.forEach(function(review){
       renderReview(review);
     });
@@ -90,13 +115,14 @@ $(document).ready(function() {
 
 // Collect all review data from the movie record
 function getReviewData(movie) {
+  reviewArr = [];
+  ratingArr = [];
   id = movie._id;
   let allReviews = movie.reviews;
 
   // If there are records in the reviews key
   if (allReviews != undefined || allReviews.length != 0) {
     allReviews.forEach(function(thisReview){
-      console.log(thisReview)
       reviewArr.push({
         'id': thisReview._id,
         'content': thisReview.reviewText,
@@ -139,26 +165,43 @@ function getReviewData(movie) {
     let allReviews = movie.reviews;
 
     getReviewData(movie);
-    calculateAverageRating(reviewsRatings);
-    renderMovie(movie, avgRating);
-    renderAllReviews(reviewsRatings);
+    console.log(reviewsRatings);
 
+    // if there are ratings, calculate the average
+    if (reviewsRatings.ratings != "No ratings currently") {
+      calculateAverageRating(reviewsRatings);
+    }
+
+    renderMovie(movie, avgRating);
+
+    //display no reviews message
+    if (reviewsRatings.reviews === "No reviews currently") {
+      $('.movieReviews').html(`<p>${reviewsRatings.reviews}`);
+    }
+
+    // If there are reviews, render them in the page
+    if (reviewsRatings.reviews != "No reviews currently") {
+      renderAllReviews(reviewsRatings);
+    }
+    console.log('movie rendered');
   }
 
   //Delete review
-  $('.deleteReview').on('submit', 'document', function(event){
+  $('.movieReviews').on('submit', function(event){
     event.preventDefault();
 
-    let reviewId = $('.deleteReview').data('id');
-    console.log(reviewId);
-    let deleteURL = `/api/reviews/${reviewId}`
+    console.log(this);
+    console.log(event.target)
+    let id = $(event.target).data('id');
+    console.log(id);
+    let deleteURL = `/api/reviews/${id}`
     console.log(deleteURL)
-    // $.ajax({
-    //   method: 'DELETE',
-    //   url: deleteURL,
-    //   success: console.log(reviewDeleted),
-    //   error: handleError
-    // });
+    $.ajax({
+      method: 'DELETE',
+      url: `/api/reviews/${id}`,
+      success: handleMovie,
+      error: handleError
+    });
   })
 
 
@@ -167,7 +210,7 @@ function getReviewData(movie) {
       $.ajax({
         method: 'GET',
         url: '/api/movies',
-        success: movies => console.log(movies),
+        success: renderAllMovies,
         error: handleError
       });
     }
@@ -199,20 +242,31 @@ Submit functions
     // Add an event listener for all children of reviewForm
     $('.movieResult').on('submit',  function(event){
       event.preventDefault();
-      console.log(event);
 
       let movieId = $('.movieSection').data('id');
 
       $.ajax({
         method: 'POST',
-        url: `/api/movies/${movieId}/reviews`,
+        url: `/api/movies/${movieId}`,
         data: $('.reviewForm').serialize(),
         success: handleMovie,
         error: handleError
       });
     })
 
+    //Open a movie from one of the all movies buttons
+    $('#allMovies').on('click', function(event){
+      console.log(this);
+      console.log(event.target);
+      let movieId=$('.oneMovie').data('id');
 
+      $.ajax({
+        method: 'GET',
+        url: `/api/movies/${movieId}`,
+        success: handleMovie,
+        error: handleError
+      });
+    })
 
     findMovies();
 })
