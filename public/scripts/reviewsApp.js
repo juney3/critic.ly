@@ -217,7 +217,7 @@ function getReviewData(movie) {
 Submit functions
 */
 
-  // Movie find form submissions (name only)
+  // Movie search form submissions (name only)
   $('.movieSearch').on('submit', function(event){
     event.preventDefault();
     let movieTitle = $('#oneMovie').val();
