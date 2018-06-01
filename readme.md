@@ -18,7 +18,6 @@ Technologies Used
 * HTML
 
 Existing Features
-Users can:
 * Create movies
 * Create reviews
 * View movies
